@@ -9,8 +9,8 @@ const _geist = Geist({ subsets: ["latin"] });
 const _geistMono = Geist_Mono({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: 'DIIMS - Digital Institutional Infrastructure Integrity Monitoring',
-  description: 'Enterprise cybersecurity monitoring platform for institutional infrastructure integrity',
+  title: 'IntegriSentinel - Digital Infrastructure Integrity Monitoring System',
+  description: 'Advanced cybersecurity monitoring platform for institutional infrastructure integrity. Real-time threat detection, compliance management, and security intelligence.',
 }
 
 export default function RootLayout({

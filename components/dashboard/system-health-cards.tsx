@@ -14,20 +14,38 @@ const healthData = [
 export function SystemHealthCards() {
   return (
     <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-5">
-      {healthData.map((item) => (
-        <Card key={item.label} className="border-border bg-[#111827]">
-          <CardHeader className="pb-2">
-            <CardTitle className="text-xs font-medium text-muted-foreground">{item.label}</CardTitle>
+      {healthData.map((item, index) => (
+        <Card
+          key={item.label}
+          className="group border-cyan-500/20 bg-gradient-to-br from-slate-900/50 to-slate-800/30 hover:border-cyan-500/40 hover:shadow-lg transition-all duration-300 overflow-hidden relative animate-slide-up"
+          style={{ animationDelay: `${index * 60}ms` }}
+        >
+          {/* Animated background */}
+          <div
+            className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+            style={{
+              background: `radial-gradient(circle, ${item.color}10 0%, transparent 70%)`,
+            }}
+          />
+          
+          <CardHeader className="pb-2 relative z-10">
+            <CardTitle className="text-xs font-medium text-muted-foreground group-hover:text-cyan-300 transition-colors">
+              {item.label}
+            </CardTitle>
           </CardHeader>
-          <CardContent>
+          <CardContent className="relative z-10">
             <div className="flex items-center gap-3">
               <div
-                className="flex size-10 items-center justify-center rounded-lg"
-                style={{ backgroundColor: `${item.color}15` }}
+                className="flex size-10 items-center justify-center rounded-lg border transition-all duration-300 group-hover:scale-110 group-hover:shadow-lg"
+                style={{
+                  backgroundColor: `${item.color}15`,
+                  borderColor: `${item.color}30`,
+                  boxShadow: `0 0 12px ${item.color}20`,
+                }}
               >
-                <item.icon className="size-5" style={{ color: item.color }} />
+                <item.icon className="size-5 group-hover:drop-shadow-[0_0_4px] transition-all" style={{ color: item.color }} />
               </div>
-              <span className="text-xl font-bold text-foreground">{item.value}</span>
+              <span className="text-xl font-bold text-foreground group-hover:text-cyan-300 transition-colors">{item.value}</span>
             </div>
           </CardContent>
         </Card>

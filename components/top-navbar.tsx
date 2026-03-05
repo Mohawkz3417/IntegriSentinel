@@ -2,6 +2,7 @@
 
 import { useRole } from "@/lib/role-context"
 import { useInstitution } from "@/lib/institution-context"
+import { InstitutionManager } from "@/components/institution-manager"
 import { Badge } from "@/components/ui/badge"
 import {
   DropdownMenu,
@@ -21,39 +22,50 @@ export function TopNavbar({ onMenuClick }: { onMenuClick: () => void }) {
   const { theme, setTheme } = useTheme()
 
   return (
-    <header className="sticky top-0 z-30 flex h-16 items-center justify-between border-b border-border bg-[#0f172a]/95 px-4 backdrop-blur-sm md:px-6">
-      <div className="flex items-center gap-3">
+    <header className="sticky top-0 z-30 flex h-16 items-center justify-between border-b border-cyan-500/10 bg-gradient-to-r from-slate-900/95 via-slate-900/95 to-slate-900/95 px-4 backdrop-blur-xl md:px-6 shadow-lg shadow-cyan-500/5">
+      <div className="flex items-center gap-4">
         <button
           onClick={onMenuClick}
-          className="rounded-md p-2 text-muted-foreground hover:text-foreground lg:hidden"
+          className="rounded-md p-2 text-muted-foreground hover:text-foreground lg:hidden transition-colors"
           aria-label="Toggle sidebar"
         >
           <Menu className="size-5" />
         </button>
-        <div className="hidden items-center gap-3 sm:flex">
-          <h1 className="text-sm font-semibold text-foreground">{institutionName}</h1>
-          <Badge className="bg-[#f59e0b]/15 text-[#f59e0b] border-[#f59e0b]/30 hover:bg-[#f59e0b]/15">
-            Risk: 58/100
-          </Badge>
+        <div className="hidden items-center gap-4 sm:flex">
+          <div className="flex flex-col">
+            <h1 className="text-sm font-semibold text-foreground">{institutionName}</h1>
+            <p className="text-[10px] text-muted-foreground">Cybersecurity Monitor</p>
+          </div>
+          <div className="h-6 w-px bg-cyan-500/20" />
+          <InstitutionManager />
         </div>
       </div>
 
       <div className="flex items-center gap-2">
         {/* Notification Bell */}
-        <Button variant="ghost" size="icon" className="relative text-muted-foreground hover:text-foreground">
+        <Button 
+          variant="ghost" 
+          size="icon" 
+          className="relative text-muted-foreground hover:text-cyan-400 hover:bg-cyan-500/10 transition-all"
+        >
           <Bell className="size-4" />
-          <span className="absolute -top-0.5 -right-0.5 flex size-4 items-center justify-center rounded-full bg-[#ef4444] text-[9px] font-bold text-[#ffffff]">
+          <span className="absolute -top-0.5 -right-0.5 flex size-4 items-center justify-center rounded-full bg-gradient-to-br from-red-500 to-red-600 text-[9px] font-bold text-white shadow-lg shadow-red-500/40">
             3
           </span>
           <span className="sr-only">Notifications</span>
         </Button>
 
+        {/* Risk Badge */}
+        <Badge className="bg-gradient-to-r from-amber-500/20 to-orange-500/20 text-amber-400 border-amber-500/30 hover:from-amber-500/30 hover:to-orange-500/30 shadow-lg shadow-amber-500/10">
+          Risk: 58/100
+        </Badge>
+
         {/* Role Badge */}
         <Badge
           className={
             isAdmin
-              ? "bg-[#3b82f6]/15 text-[#3b82f6] border-[#3b82f6]/30 hover:bg-[#3b82f6]/15 cursor-pointer"
-              : "bg-[#10b981]/15 text-[#10b981] border-[#10b981]/30 hover:bg-[#10b981]/15 cursor-pointer"
+              ? "bg-gradient-to-r from-blue-500/20 to-cyan-500/20 text-blue-400 border-blue-500/30 hover:from-blue-500/30 hover:to-cyan-500/30 cursor-pointer shadow-lg shadow-blue-500/10 transition-all"
+              : "bg-gradient-to-r from-emerald-500/20 to-green-500/20 text-emerald-400 border-emerald-500/30 hover:from-emerald-500/30 hover:to-green-500/30 cursor-pointer shadow-lg shadow-emerald-500/10 transition-all"
           }
           onClick={() => setRole(isAdmin ? "limited" : "admin")}
         >
@@ -68,7 +80,7 @@ export function TopNavbar({ onMenuClick }: { onMenuClick: () => void }) {
         <Button
           variant="ghost"
           size="icon"
-          className="text-muted-foreground hover:text-foreground"
+          className="text-muted-foreground hover:text-cyan-400 hover:bg-cyan-500/10 transition-all"
           onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
         >
           <Sun className="size-4 rotate-0 scale-100 transition-transform dark:-rotate-90 dark:scale-0" />
@@ -79,22 +91,26 @@ export function TopNavbar({ onMenuClick }: { onMenuClick: () => void }) {
         {/* Profile Dropdown */}
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
-            <Button variant="ghost" size="icon" className="text-muted-foreground hover:text-foreground">
+            <Button 
+              variant="ghost" 
+              size="icon" 
+              className="text-muted-foreground hover:text-cyan-400 hover:bg-cyan-500/10 transition-all"
+            >
               <User className="size-4" />
               <span className="sr-only">User menu</span>
             </Button>
           </DropdownMenuTrigger>
-          <DropdownMenuContent align="end" className="w-48">
+          <DropdownMenuContent align="end" className="w-48 border-cyan-500/20 bg-slate-900/95 backdrop-blur">
             <DropdownMenuLabel>My Account</DropdownMenuLabel>
-            <DropdownMenuSeparator />
+            <DropdownMenuSeparator className="bg-cyan-500/10" />
             <DropdownMenuItem>Profile</DropdownMenuItem>
             <DropdownMenuItem>Preferences</DropdownMenuItem>
-            <DropdownMenuSeparator />
+            <DropdownMenuSeparator className="bg-cyan-500/10" />
             <DropdownMenuItem onClick={() => setRole(isAdmin ? "limited" : "admin")}>
               Switch to {isAdmin ? "Limited" : "Admin"} View
             </DropdownMenuItem>
-            <DropdownMenuSeparator />
-            <DropdownMenuItem className="text-[#ef4444]">Logout</DropdownMenuItem>
+            <DropdownMenuSeparator className="bg-cyan-500/10" />
+            <DropdownMenuItem className="text-red-500 focus:text-red-400 focus:bg-red-500/10">Logout</DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
       </div>
