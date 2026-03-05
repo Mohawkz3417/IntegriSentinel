@@ -17,7 +17,7 @@ export function SystemHealthCards() {
       {healthData.map((item, index) => (
         <Card
           key={item.label}
-          className="group border-cyan-500/20 bg-gradient-to-br from-slate-900/50 to-slate-800/30 hover:border-cyan-500/40 hover:shadow-lg transition-all duration-300 overflow-hidden relative animate-slide-up"
+          className="group border-border dark:border-cyan-500/20 bg-card dark:bg-gradient-to-br dark:from-slate-900/50 dark:to-slate-800/30 hover:border-primary dark:hover:border-cyan-500/40 hover:shadow-md dark:hover:shadow-lg transition-all duration-300 overflow-hidden relative animate-slide-up"
           style={{ animationDelay: `${index * 60}ms` }}
         >
           {/* Animated background */}
@@ -29,7 +29,7 @@ export function SystemHealthCards() {
           />
           
           <CardHeader className="pb-2 relative z-10">
-            <CardTitle className="text-xs font-medium text-muted-foreground group-hover:text-cyan-300 transition-colors">
+            <CardTitle className="text-xs font-medium text-muted-foreground group-hover:text-primary dark:group-hover:text-cyan-300 transition-colors">
               {item.label}
             </CardTitle>
           </CardHeader>
@@ -45,7 +45,7 @@ export function SystemHealthCards() {
               >
                 <item.icon className="size-5 group-hover:drop-shadow-[0_0_4px] transition-all" style={{ color: item.color }} />
               </div>
-              <span className="text-xl font-bold text-foreground group-hover:text-cyan-300 transition-colors">{item.value}</span>
+              <span className="text-xl font-bold text-foreground group-hover:text-primary dark:group-hover:text-cyan-300 transition-colors">{item.value}</span>
             </div>
           </CardContent>
         </Card>

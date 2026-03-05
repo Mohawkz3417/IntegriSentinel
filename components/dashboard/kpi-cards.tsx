@@ -31,14 +31,14 @@ export function KPICards() {
       {kpiData.map((kpi, index) => (
         <Card
           key={kpi.label}
-          className="group border-cyan-500/20 bg-gradient-to-br from-slate-900/50 to-slate-800/30 hover:border-cyan-500/40 hover:shadow-lg hover:shadow-cyan-500/20 transition-all duration-300 cursor-pointer overflow-hidden relative animate-slide-up"
+          className="group border-border dark:border-cyan-500/20 bg-card dark:bg-gradient-to-br dark:from-slate-900/50 dark:to-slate-800/30 hover:border-primary dark:hover:border-cyan-500/40 hover:shadow-md dark:hover:shadow-lg dark:hover:shadow-cyan-500/20 transition-all duration-300 cursor-pointer overflow-hidden relative animate-slide-up"
           style={{ animationDelay: `${index * 50}ms` }}
         >
           {/* Animated background gradient */}
-          <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/0 via-cyan-500/5 to-cyan-500/0 group-hover:via-cyan-500/10 transition-all duration-300" />
+          <div className="absolute inset-0 bg-gradient-to-r from-primary/0 via-primary/3 to-primary/0 dark:from-cyan-500/0 dark:via-cyan-500/5 dark:to-cyan-500/0 group-hover:via-primary/5 dark:group-hover:via-cyan-500/10 transition-all duration-300" />
           
           <CardHeader className="flex flex-row items-center justify-between pb-2 relative z-10">
-            <CardTitle className="text-xs font-medium text-muted-foreground group-hover:text-cyan-300 transition-colors">
+            <CardTitle className="text-xs font-medium text-muted-foreground group-hover:text-primary dark:group-hover:text-cyan-300 transition-colors">
               {kpi.label}
             </CardTitle>
             <div
@@ -54,7 +54,7 @@ export function KPICards() {
           </CardHeader>
           <CardContent className="relative z-10">
             <div className="flex items-end gap-2">
-              <span className="text-2xl font-bold text-foreground group-hover:text-cyan-300 transition-colors">{kpi.value}</span>
+              <span className="text-2xl font-bold text-foreground group-hover:text-primary dark:group-hover:text-cyan-300 transition-colors">{kpi.value}</span>
               <span
                 className="flex items-center gap-0.5 text-xs font-medium transition-all"
                 style={{ color: kpi.label.includes("Offline") || kpi.label.includes("Critical") || kpi.label.includes("Failed") || kpi.label.includes("High Risk")
