@@ -32,6 +32,7 @@ const navItems: NavItem[] = [
   { label: "Drivers & OS", href: "/dashboard/drivers", icon: HardDrive },
   { label: "Malicious Hash", href: "/dashboard/malicious-hash", icon: Search, adminOnly: true },
   { label: "Database Logs", href: "/dashboard/database-logs", icon: Database, adminOnly: true },
+  { label: "Database Viewer", href: "/dashboard/database-viewer", icon: Database, adminOnly: true },
   { label: "Policies", href: "/dashboard/monitoring-policies", icon: Sliders, adminOnly: true },
   { label: "Admin Panel", href: "/dashboard/admin", icon: Shield, adminOnly: true },
   { label: "Risk Intel", href: "/dashboard/risk-intelligence", icon: TrendingUp },
@@ -120,8 +121,8 @@ export function AppSidebar({ open, onClose }: { open: boolean; onClose: () => vo
         </div>
 
         {/* Navigation */}
-        <ScrollArea className="flex-1 py-3">
-          <nav className="flex flex-col gap-0.5 px-3">
+        <ScrollArea className="flex-1 py-3 overflow-hidden hover:overflow-auto transition-all">
+          <nav className="flex flex-col gap-0.5 px-3 pr-4">
             {filteredItems.map((item) => {
               const isActive = item.href === "/dashboard" ? pathname === "/dashboard" : pathname.startsWith(item.href)
               return (
@@ -132,8 +133,8 @@ export function AppSidebar({ open, onClose }: { open: boolean; onClose: () => vo
                   className={cn(
                     "flex items-center gap-3 rounded-lg px-3 py-2 text-[13px] font-medium transition-all duration-200",
                     isActive
-                      ? "bg-[#00d4ff]/10 text-[#00d4ff] shadow-sm shadow-[#00d4ff]/5"
-                      : "text-[#7a8baa] hover:bg-[#141d2f] hover:text-[#e8edf5]"
+                      ? "bg-cyan-500/15 text-cyan-300 shadow-sm shadow-cyan-500/5 border border-cyan-500/20"
+                      : "text-muted-foreground hover:bg-slate-800/50 hover:text-foreground"
                   )}
                 >
                   <item.icon className={cn("size-4 shrink-0", isActive && "drop-shadow-[0_0_4px_rgba(0,212,255,0.5)]")} />
@@ -142,6 +143,7 @@ export function AppSidebar({ open, onClose }: { open: boolean; onClose: () => vo
               )
             })}
           </nav>
+          <div className="h-4" />
         </ScrollArea>
 
         {/* Status bar */}
