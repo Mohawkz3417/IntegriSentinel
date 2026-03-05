@@ -68,7 +68,7 @@ export default function InstitutionPage() {
   }
 
   return (
-    <div className="flex flex-col gap-6 animate-fade-in">
+    <div className="flex flex-col gap-6">
       {/* Header with editable institution name */}
       <div className="flex items-start gap-4 rounded-lg border border-cyan-500/20 bg-gradient-to-r from-slate-900/50 to-slate-800/30 p-6 backdrop-blur-sm">
         <div className="flex size-12 shrink-0 items-center justify-center rounded-lg border border-cyan-500/30 bg-gradient-to-br from-cyan-500/20 to-cyan-500/10 shadow-lg shadow-cyan-500/10">

@@ -47,7 +47,7 @@ export default function DatabaseLogsPage() {
   }
 
   return (
-    <div className="flex flex-col gap-6 animate-fade-in">
+    <div className="flex flex-col gap-6">
       <div className="flex items-start gap-4 rounded-lg border border-cyan-500/20 bg-gradient-to-r from-slate-900/50 to-slate-800/30 p-6">
         <div className="flex size-12 items-center justify-center rounded-lg border border-cyan-500/30 bg-gradient-to-br from-cyan-500/20 to-cyan-500/10 shadow-lg shadow-cyan-500/10">
           <Database className="size-6 text-cyan-400" />
@@ -97,8 +97,7 @@ export default function DatabaseLogsPage() {
             return (
               <Card
                 key={log.id}
-                className="border-cyan-500/20 bg-gradient-to-r from-slate-900/50 to-slate-800/30 hover:border-cyan-500/40 hover:shadow-lg hover:shadow-cyan-500/10 transition-all duration-300 group animate-slide-up"
-                style={{ animationDelay: `${index * 30}ms` }}
+                className="border-cyan-500/20 bg-gradient-to-r from-slate-900/50 to-slate-800/30 hover:border-cyan-500/40 hover:shadow-lg hover:shadow-cyan-500/10 transition-all duration-200 group"
               >
                 <CardContent className="pt-4 pb-4">
                   <button
@@ -121,7 +120,7 @@ export default function DatabaseLogsPage() {
                     </span>
                   </button>
                   {expanded && (
-                    <div className="mt-3 rounded-lg border border-cyan-500/20 bg-slate-900/60 p-4 backdrop-blur-sm animate-slide-up">
+                    <div className="mt-3 rounded-lg border border-cyan-500/20 bg-slate-900/60 p-4 backdrop-blur-sm">
                       <pre className="overflow-x-auto text-xs leading-relaxed text-cyan-100 font-mono">
                         {JSON.stringify(log.data, null, 2)}
                       </pre>
