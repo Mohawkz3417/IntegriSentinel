@@ -4,8 +4,8 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { ScrollArea } from "@/components/ui/scroll-area"
 import { Button } from "@/components/ui/button"
-import { mockAlerts } from "@/lib/mock-data"
-import { Search } from "lucide-react"
+import { useAlerts } from "@/lib/hooks/use-data"
+import { Search, Loader2, AlertTriangle } from "lucide-react"
 import { formatUTCDate } from "@/lib/utils"
 
 const severityColors: Record<string, string> = {
@@ -16,15 +16,32 @@ const severityColors: Record<string, string> = {
 }
 
 export function AlertFeed() {
+  const { data: alerts = [], isLoading, error } = useAlerts()
+
   return (
     <Card className="border-border bg-card">
       <CardHeader>
         <CardTitle className="text-sm font-medium text-foreground">Real-Time Alert Feed</CardTitle>
       </CardHeader>
       <CardContent>
+        {isLoading ? (
+          <div className="flex flex-col items-center justify-center h-[400px]">
+            <Loader2 className="size-6 animate-spin text-primary mb-2" />
+            <p className="text-sm text-muted-foreground">Loading alerts...</p>
+          </div>
+        ) : error ? (
+          <div className="flex flex-col items-center justify-center h-[400px]">
+            <AlertTriangle className="size-6 text-destructive mb-2" />
+            <p className="text-sm text-destructive">Failed to load alerts</p>
+          </div>
+        ) : alerts.length === 0 ? (
+          <div className="flex flex-col items-center justify-center h-[400px]">
+            <p className="text-sm text-muted-foreground">No alerts to display</p>
+          </div>
+        ) : (
         <ScrollArea className="h-[400px]">
           <div className="flex flex-col gap-3 pr-4">
-            {mockAlerts.map((alert) => (
+            {alerts.map((alert) => (
               <div
                 key={alert.id}
                 className="flex flex-col gap-2 rounded-lg border border-border bg-secondary p-3"
@@ -51,6 +68,7 @@ export function AlertFeed() {
             ))}
           </div>
         </ScrollArea>
+        )}
       </CardContent>
     </Card>
   )

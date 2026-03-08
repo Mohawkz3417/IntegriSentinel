@@ -1,17 +1,58 @@
 "use client"
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Shield, ShieldCheck, AlertTriangle, MonitorX, HardDrive } from "lucide-react"
-
-const healthData = [
-  { label: "Firewall Enabled", value: "10/12", icon: Shield, color: "#10b981" },
-  { label: "Antivirus Active", value: "9/12", icon: ShieldCheck, color: "#3b82f6" },
-  { label: "Outdated OS", value: "3", icon: MonitorX, color: "#f59e0b" },
-  { label: "Suspicious Ports", value: "4", icon: AlertTriangle, color: "#ef4444" },
-  { label: "Driver Changes", value: "2", icon: HardDrive, color: "#06b6d4" },
-]
+import { useDevices, useOpenPorts, useDrivers } from "@/lib/hooks/use-data"
+import { useMemo } from "react"
+import { Shield, ShieldCheck, AlertTriangle, MonitorX, HardDrive, Loader2 } from "lucide-react"
 
 export function SystemHealthCards() {
+  const { data: devices = [], isLoading: devicesLoading } = useDevices()
+  const { data: ports = [], isLoading: portsLoading } = useOpenPorts()
+  const { data: drivers = [], isLoading: driversLoading } = useDrivers()
+
+  const isLoading = devicesLoading || portsLoading || driversLoading
+
+  // Calculate health data from live data
+  const healthData = useMemo(() => {
+    const totalDevices = devices.length
+    const firewallEnabled = devices.filter((d) => d.firewall).length
+    const antivirusActive = devices.filter((d) => d.antivirus).length
+    // Consider "outdated" if OS version contains older indicators
+    const outdatedOS = devices.filter((d) => 
+      d.osVersion.includes("20H2") || d.osVersion.includes("21H2") || d.osVersion.includes("20.04")
+    ).length
+    const suspiciousPorts = ports.filter((p) => p.suspicious).length
+    const driverChanges = drivers.filter((d) => d.newlyAdded).length
+
+    return [
+      { label: "Firewall Enabled", value: `${firewallEnabled}/${totalDevices}`, icon: Shield, color: "#10b981" },
+      { label: "Antivirus Active", value: `${antivirusActive}/${totalDevices}`, icon: ShieldCheck, color: "#3b82f6" },
+      { label: "Outdated OS", value: String(outdatedOS), icon: MonitorX, color: "#f59e0b" },
+      { label: "Suspicious Ports", value: String(suspiciousPorts), icon: AlertTriangle, color: "#ef4444" },
+      { label: "Driver Changes", value: String(driverChanges), icon: HardDrive, color: "#06b6d4" },
+    ]
+  }, [devices, ports, drivers])
+
+  if (isLoading) {
+    return (
+      <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-5">
+        {Array.from({ length: 5 }).map((_, i) => (
+          <Card key={i} className="border-border bg-card animate-pulse">
+            <CardHeader className="pb-2">
+              <div className="h-4 w-20 bg-muted rounded" />
+            </CardHeader>
+            <CardContent>
+              <div className="flex items-center gap-3">
+                <div className="size-10 bg-muted rounded-lg" />
+                <div className="h-6 w-12 bg-muted rounded" />
+              </div>
+            </CardContent>
+          </Card>
+        ))}
+      </div>
+    )
+  }
+
   return (
     <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-5">
       {healthData.map((item) => (

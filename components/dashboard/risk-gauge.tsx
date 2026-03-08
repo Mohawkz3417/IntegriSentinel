@@ -1,6 +1,9 @@
 "use client"
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { useDevices } from "@/lib/hooks/use-data"
+import { useMemo } from "react"
+import { Loader2 } from "lucide-react"
 
 function getRiskLevel(score: number) {
   if (score <= 25) return { label: "Low", color: "#10b981" }
@@ -9,9 +12,32 @@ function getRiskLevel(score: number) {
   return { label: "Critical", color: "#dc2626" }
 }
 
-export function RiskGauge({ score = 58 }: { score?: number }) {
+export function RiskGauge() {
+  const { data: devices = [], isLoading } = useDevices()
+  
+  // Calculate average risk score from live device data
+  const score = useMemo(() => {
+    if (devices.length === 0) return 0
+    const total = devices.reduce((acc, d) => acc + d.riskLevel, 0)
+    return Math.round(total / devices.length)
+  }, [devices])
+
   const risk = getRiskLevel(score)
   const rotation = (score / 100) * 180 - 90
+
+  if (isLoading) {
+    return (
+      <Card className="border-border bg-card">
+        <CardHeader>
+          <CardTitle className="text-sm font-medium text-foreground">Institution Risk Score</CardTitle>
+        </CardHeader>
+        <CardContent className="flex flex-col items-center justify-center h-[280px]">
+          <Loader2 className="size-8 animate-spin text-primary mb-4" />
+          <p className="text-sm text-muted-foreground">Calculating risk...</p>
+        </CardContent>
+      </Card>
+    )
+  }
 
   return (
     <Card className="border-border bg-card">

@@ -10,15 +10,16 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@
 import { ScrollArea } from "@/components/ui/scroll-area"
 import { Button } from "@/components/ui/button"
 import {
-  mockDevices, mockAlerts, mockFileChanges, mockUSBDevices,
-  mockOpenPorts, mockDrivers, mockLoginActivity,
-} from "@/lib/mock-data"
+  useDevice, useAlerts, useFileChanges, useUSBDevices,
+  useOpenPorts, useDrivers, useLoginActivity,
+} from "@/lib/hooks/use-data"
 import {
-  ArrowLeft, Monitor, Shield, ShieldCheck, Cpu, Clock,
-  Network, Fingerprint, AlertTriangle, Usb, HardDrive, FileText, LogIn,
+  ArrowLeft, Monitor, Shield, AlertTriangle, Usb, HardDrive, FileText, LogIn,
+  Network, Loader2,
 } from "lucide-react"
 import Link from "next/link"
 import { formatUTCDate } from "@/lib/utils"
+import { useMemo } from "react"
 
 function getRiskColor(risk: number) {
   if (risk <= 25) return "#10b981"
@@ -29,15 +30,55 @@ function getRiskColor(risk: number) {
 
 export default function DeviceDetailPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = use(params)
-  const device = mockDevices.find((d) => d.id === id)
-  if (!device) return notFound()
+  
+  // Fetch all data using SWR hooks
+  const { data: device, isLoading: deviceLoading, error: deviceError } = useDevice(id)
+  const { data: allAlerts = [] } = useAlerts()
+  const { data: allFileChanges = [] } = useFileChanges()
+  const { data: allUSBDevices = [] } = useUSBDevices()
+  const { data: allOpenPorts = [] } = useOpenPorts()
+  const { data: allDrivers = [] } = useDrivers()
+  const { data: allLoginActivity = [] } = useLoginActivity()
 
-  const deviceAlerts = mockAlerts.filter((a) => a.device === device.name)
-  const deviceFiles = mockFileChanges.filter((f) => f.device === device.name)
-  const deviceUSB = mockUSBDevices.filter((u) => u.device === device.name)
-  const devicePorts = mockOpenPorts.filter((p) => p.device === device.name)
-  const deviceDrivers = mockDrivers.filter((d) => d.device === device.name)
-  const deviceLogins = mockLoginActivity.filter((l) => l.device === device.name)
+  // Filter data for this device
+  const deviceAlerts = useMemo(() => 
+    device ? allAlerts.filter((a) => a.device === device.name) : [], 
+    [allAlerts, device]
+  )
+  const deviceFiles = useMemo(() => 
+    device ? allFileChanges.filter((f) => f.device === device.name) : [], 
+    [allFileChanges, device]
+  )
+  const deviceUSB = useMemo(() => 
+    device ? allUSBDevices.filter((u) => u.device === device.name) : [], 
+    [allUSBDevices, device]
+  )
+  const devicePorts = useMemo(() => 
+    device ? allOpenPorts.filter((p) => p.device === device.name) : [], 
+    [allOpenPorts, device]
+  )
+  const deviceDrivers = useMemo(() => 
+    device ? allDrivers.filter((d) => d.device === device.name) : [], 
+    [allDrivers, device]
+  )
+  const deviceLogins = useMemo(() => 
+    device ? allLoginActivity.filter((l) => l.device === device.name) : [], 
+    [allLoginActivity, device]
+  )
+
+  // Loading state
+  if (deviceLoading) {
+    return (
+      <div className="flex flex-col items-center justify-center py-16">
+        <Loader2 className="size-8 animate-spin text-primary mb-4" />
+        <p className="text-sm text-muted-foreground">Loading device details...</p>
+      </div>
+    )
+  }
+
+  // Error or not found
+  if (deviceError || !device) return notFound()
+
   const riskColor = getRiskColor(device.riskLevel)
 
   return (

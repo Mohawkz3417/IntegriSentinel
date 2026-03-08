@@ -7,8 +7,8 @@ import { Badge } from "@/components/ui/badge"
 import { Progress } from "@/components/ui/progress"
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
-import { mockDevices } from "@/lib/mock-data"
-import { Monitor, Search, MapPin, ArrowLeft, Building2 } from "lucide-react"
+import { useDevices } from "@/lib/hooks/use-data"
+import { Monitor, Search, MapPin, ArrowLeft, Building2, Loader2 } from "lucide-react"
 import { useState, Suspense } from "react"
 
 function getRiskColor(risk: number) {
@@ -29,11 +29,14 @@ function DevicesContent() {
   const searchParams = useSearchParams()
   const entityFilter = searchParams.get("entity")
   const [search, setSearch] = useState("")
+  
+  // Fetch devices using SWR (auto-refreshes from Flask backend when configured)
+  const { data: allDevices = [], isLoading, error } = useDevices()
 
   // Filter by entity/department first, then by search
   const entityFilteredDevices = entityFilter
-    ? mockDevices.filter((d) => d.department === entityFilter)
-    : mockDevices
+    ? allDevices.filter((d) => d.department === entityFilter)
+    : allDevices
 
   const filtered = entityFilteredDevices.filter(
     (d) =>
@@ -41,6 +44,25 @@ function DevicesContent() {
       d.ip.includes(search) ||
       d.id.toLowerCase().includes(search.toLowerCase())
   )
+
+  // Loading state
+  if (isLoading) {
+    return (
+      <div className="flex flex-col items-center justify-center py-16">
+        <Loader2 className="size-8 animate-spin text-primary mb-4" />
+        <p className="text-sm text-muted-foreground">Loading devices...</p>
+      </div>
+    )
+  }
+
+  // Error state
+  if (error) {
+    return (
+      <div className="flex flex-col items-center justify-center rounded-lg border border-dashed border-destructive/50 bg-destructive/5 py-16">
+        <p className="text-sm text-destructive">Failed to load devices. Please try again.</p>
+      </div>
+    )
+  }
 
   return (
     <div className="flex flex-col gap-6">
@@ -73,7 +95,7 @@ function DevicesContent() {
             <>
               <h2 className="text-xl font-bold text-foreground">Monitored Devices</h2>
               <p className="text-sm text-muted-foreground">
-                {mockDevices.length} devices registered across your institution
+                {allDevices.length} devices registered across your institution
               </p>
             </>
           )}

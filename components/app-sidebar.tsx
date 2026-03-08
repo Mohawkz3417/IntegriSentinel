@@ -5,6 +5,7 @@ import { usePathname } from "next/navigation"
 import { cn } from "@/lib/utils"
 import { useRole } from "@/lib/role-context"
 import { useInstitution } from "@/lib/institution-context"
+import { useDevices } from "@/lib/hooks/use-data"
 import { LogoIcon } from "@/components/logo"
 import { ScrollArea } from "@/components/ui/scroll-area"
 import {
@@ -12,7 +13,7 @@ import {
   LogIn, Network, HardDrive, Search, Database, Settings, TrendingUp,
   Building2, Shield, Sliders, X, ChevronDown, ChevronRight, MapPin,
 } from "lucide-react"
-import { useState } from "react"
+import { useState, useMemo } from "react"
 
 interface NavItem {
   label: string
@@ -44,8 +45,18 @@ export function AppSidebar({ open, onClose }: { open: boolean; onClose: () => vo
   const pathname = usePathname()
   const { isAdmin } = useRole()
   const { institutionName, entities } = useInstitution()
+  const { data: devices = [] } = useDevices()
   const [instExpanded, setInstExpanded] = useState(true)
   const filteredItems = navItems.filter((item) => !item.adminOnly || isAdmin)
+
+  // Calculate device counts per entity from live data
+  const entityDeviceCounts = useMemo(() => {
+    const counts: Record<string, number> = {}
+    devices.forEach((device) => {
+      counts[device.department] = (counts[device.department] || 0) + 1
+    })
+    return counts
+  }, [devices])
 
   return (
     <>
@@ -95,18 +106,23 @@ export function AppSidebar({ open, onClose }: { open: boolean; onClose: () => vo
           </button>
           {instExpanded && (
             <div className="mt-1 flex flex-col gap-0.5 pl-3 animate-slide-up">
-              {entities.slice(0, 8).map((entity) => (
-                <Link
-                  key={entity.id}
-                  href={`/dashboard/devices?entity=${encodeURIComponent(entity.name)}`}
-                  onClick={onClose}
-                  className="flex items-center gap-2 rounded-md px-2 py-1.5 text-xs text-muted-foreground transition-colors hover:bg-secondary dark:hover:bg-slate-800/50 hover:text-foreground"
-                >
-                  <MapPin className="size-3 text-muted-foreground/60" />
-                  <span className="truncate">{entity.name}</span>
-                  <span className="ml-auto text-[10px] text-muted-foreground">{entity.type}</span>
-                </Link>
-              ))}
+              {entities.slice(0, 8).map((entity) => {
+                const deviceCount = entityDeviceCounts[entity.name] || 0
+                return (
+                  <Link
+                    key={entity.id}
+                    href={`/dashboard/devices?entity=${encodeURIComponent(entity.name)}`}
+                    onClick={onClose}
+                    className="flex items-center gap-2 rounded-md px-2 py-1.5 text-xs text-muted-foreground transition-colors hover:bg-secondary dark:hover:bg-slate-800/50 hover:text-foreground"
+                  >
+                    <MapPin className="size-3 text-muted-foreground/60" />
+                    <span className="truncate flex-1">{entity.name}</span>
+                    <span className="text-[10px] px-1.5 py-0.5 rounded bg-secondary dark:bg-slate-800/50 text-muted-foreground">
+                      {deviceCount}
+                    </span>
+                  </Link>
+                )
+              })}
               {entities.length > 8 && (
                 <Link
                   href="/dashboard/institution"
@@ -153,7 +169,7 @@ export function AppSidebar({ open, onClose }: { open: boolean; onClose: () => vo
               <div className="size-2 rounded-full bg-success dark:shadow-[0_0_6px_rgba(0,255,170,0.5)]" />
               <span>System Online</span>
             </div>
-            <span className="text-[10px] font-mono text-muted-foreground">12 Hosts</span>
+            <span className="text-[10px] font-mono text-muted-foreground">{devices.length} Hosts</span>
           </div>
         </div>
       </aside>
