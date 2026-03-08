@@ -10,7 +10,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
 import { mockDepartments, mockDevices } from "@/lib/mock-data"
 import { useInstitution } from "@/lib/institution-context"
-import { Building2, Pencil, Check, X, Plus, Trash2, MapPin } from "lucide-react"
+import { Building2, Pencil, Check, X, Plus, Trash2, MapPin, Monitor, ChevronLeft, Shield, AlertTriangle, Wifi, WifiOff } from "lucide-react"
 
 const entityTypes = ["Lab", "Office", "Facility", "Infrastructure", "Classroom", "Staff Room", "Other"]
 
@@ -19,6 +19,7 @@ export default function InstitutionPage() {
 
   const [editingName, setEditingName] = useState(false)
   const [nameInput, setNameInput] = useState(institutionName)
+  const [selectedEntity, setSelectedEntity] = useState<string | null>(null)
 
   const [newEntityName, setNewEntityName] = useState("")
   const [newEntityType, setNewEntityType] = useState("Lab")
@@ -30,6 +31,29 @@ export default function InstitutionPage() {
   const totalDevices = mockDevices.length
   const compliantDevices = mockDepartments.reduce((sum, d) => sum + d.compliant, 0)
   const complianceRate = Math.round((compliantDevices / totalDevices) * 100)
+
+  // Get devices for selected entity
+  const selectedEntityData = selectedEntity ? entities.find(e => e.id === selectedEntity) : null
+  const entityDevices = selectedEntityData 
+    ? mockDevices.filter(device => device.department === selectedEntityData.name)
+    : []
+
+  // Get device count for each entity
+  const getDeviceCountForEntity = (entityName: string) => {
+    return mockDevices.filter(device => device.department === entityName).length
+  }
+
+  function getRiskColor(riskLevel: number) {
+    if (riskLevel < 30) return "text-emerald-500"
+    if (riskLevel < 60) return "text-amber-500"
+    return "text-red-500"
+  }
+
+  function getRiskBadgeClass(riskLevel: number) {
+    if (riskLevel < 30) return "bg-emerald-500/15 text-emerald-500 border-emerald-500/30"
+    if (riskLevel < 60) return "bg-amber-500/15 text-amber-500 border-amber-500/30"
+    return "bg-red-500/15 text-red-500 border-red-500/30"
+  }
 
   function handleSaveName() {
     if (nameInput.trim()) {
