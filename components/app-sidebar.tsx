@@ -121,7 +121,7 @@ export function AppSidebar({ open, onClose }: { open: boolean; onClose: () => vo
         </div>
 
         {/* Navigation */}
-        <ScrollArea className="flex-1 py-3">
+        <ScrollArea className="flex-1 py-3 overflow-hidden hover:overflow-auto transition-all">
           <nav className="flex flex-col gap-0.5 px-3 pr-4">
             {filteredItems.map((item) => {
               const isActive = item.href === "/dashboard" ? pathname === "/dashboard" : pathname.startsWith(item.href)
