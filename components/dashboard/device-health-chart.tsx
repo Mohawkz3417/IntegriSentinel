@@ -2,8 +2,10 @@
 
 import { useState, useEffect } from 'react'
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { Button } from "@/components/ui/button"
 import { PieChart, Pie, Cell, Tooltip, ResponsiveContainer } from "recharts"
-import { mockDeviceHealthData } from "@/lib/mock-data"
+import { useDeviceHealthData } from "@/lib/hooks/use-data"
+import { Loader2, AlertTriangle, RefreshCw } from "lucide-react"
 
 const chartTooltipStyle = {
   contentStyle: {
@@ -18,25 +20,57 @@ const chartTooltipStyle = {
 
 export function DeviceHealthChart() {
   const [mounted, setMounted] = useState(false)
+  const { data: deviceHealthData = [], isLoading, error, mutate } = useDeviceHealthData()
 
   useEffect(() => {
     setMounted(true)
   }, [])
 
-  if (!mounted) {
+  if (!mounted || isLoading) {
     return (
       <Card className="border-border dark:border-cyan-500/20 bg-card dark:bg-gradient-to-br dark:from-slate-900/50 dark:to-slate-800/30 overflow-hidden lg:col-span-2 animate-slide-up" style={{ animationDelay: "200ms" }}>
         <CardHeader className="border-b border-border dark:border-cyan-500/10 pb-3">
           <CardTitle className="text-sm font-medium text-foreground dark:text-transparent dark:bg-clip-text dark:bg-gradient-to-r dark:from-cyan-400 dark:to-emerald-400">Device Health Distribution</CardTitle>
         </CardHeader>
         <CardContent className="pt-6">
-          <div className="flex flex-col items-center gap-6 md:flex-row md:justify-center">
-            <div className="h-[250px] w-[250px] bg-secondary dark:bg-slate-900/30 rounded-lg animate-pulse" />
-            <div className="flex flex-col gap-3">
-              {[1, 2, 3, 4].map((i) => (
-                <div key={i} className="h-8 w-40 bg-secondary dark:bg-slate-900/30 rounded animate-pulse" />
-              ))}
-            </div>
+          <div className="flex flex-col items-center justify-center gap-4 h-[250px]">
+            <Loader2 className="size-8 animate-spin text-primary" />
+            <p className="text-sm text-muted-foreground">Loading device health data...</p>
+          </div>
+        </CardContent>
+      </Card>
+    )
+  }
+
+  if (error) {
+    return (
+      <Card className="border-border dark:border-cyan-500/20 bg-card dark:bg-gradient-to-br dark:from-slate-900/50 dark:to-slate-800/30 overflow-hidden lg:col-span-2 animate-slide-up" style={{ animationDelay: "200ms" }}>
+        <CardHeader className="border-b border-border dark:border-cyan-500/10 pb-3">
+          <CardTitle className="text-sm font-medium text-foreground dark:text-transparent dark:bg-clip-text dark:bg-gradient-to-r dark:from-cyan-400 dark:to-emerald-400">Device Health Distribution</CardTitle>
+        </CardHeader>
+        <CardContent className="pt-6">
+          <div className="flex flex-col items-center justify-center gap-4 h-[250px]">
+            <AlertTriangle className="size-8 text-destructive" />
+            <p className="text-sm text-destructive">Failed to load device health data</p>
+            <Button variant="outline" size="sm" onClick={() => mutate()}>
+              <RefreshCw className="size-4 mr-2" />
+              Retry
+            </Button>
+          </div>
+        </CardContent>
+      </Card>
+    )
+  }
+
+  if (deviceHealthData.length === 0) {
+    return (
+      <Card className="border-border dark:border-cyan-500/20 bg-card dark:bg-gradient-to-br dark:from-slate-900/50 dark:to-slate-800/30 overflow-hidden lg:col-span-2 animate-slide-up" style={{ animationDelay: "200ms" }}>
+        <CardHeader className="border-b border-border dark:border-cyan-500/10 pb-3">
+          <CardTitle className="text-sm font-medium text-foreground dark:text-transparent dark:bg-clip-text dark:bg-gradient-to-r dark:from-cyan-400 dark:to-emerald-400">Device Health Distribution</CardTitle>
+        </CardHeader>
+        <CardContent className="pt-6">
+          <div className="flex flex-col items-center justify-center gap-4 h-[250px]">
+            <p className="text-sm text-muted-foreground">No device health data available</p>
           </div>
         </CardContent>
       </Card>
@@ -55,7 +89,7 @@ export function DeviceHealthChart() {
             <ResponsiveContainer width="100%" height="100%">
               <PieChart width={250} height={250}>
                 <Pie
-                  data={mockDeviceHealthData}
+                  data={deviceHealthData}
                   cx="50%"
                   cy="50%"
                   innerRadius={60}
@@ -63,7 +97,7 @@ export function DeviceHealthChart() {
                   paddingAngle={4}
                   dataKey="value"
                 >
-                  {mockDeviceHealthData.map((entry, index) => (
+                  {deviceHealthData.map((entry, index) => (
                     <Cell key={`cell-${index}`} fill={entry.fill} opacity={0.8} />
                   ))}
                 </Pie>
@@ -72,7 +106,7 @@ export function DeviceHealthChart() {
             </ResponsiveContainer>
           </div>
           <div className="flex flex-col gap-3">
-            {mockDeviceHealthData.map((entry) => (
+            {deviceHealthData.map((entry) => (
               <div key={entry.name} className="flex items-center gap-3 p-2 rounded-lg border border-border dark:border-cyan-500/10 bg-secondary dark:bg-slate-900/30 hover:bg-muted dark:hover:bg-slate-900/60 transition-colors">
                 <div className="size-3 rounded-full" style={{ backgroundColor: entry.fill }} />
                 <span className="text-sm text-muted-foreground">{entry.name}</span>
