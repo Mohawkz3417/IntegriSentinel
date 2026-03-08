@@ -47,7 +47,7 @@ export default function DevicesPage() {
             placeholder="Search devices..."
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            className="border-border bg-[#111827] pl-9 text-foreground"
+            className="border-border bg-card pl-9 text-foreground"
           />
         </div>
       </div>
@@ -57,11 +57,11 @@ export default function DevicesPage() {
           const riskColor = getRiskColor(device.riskLevel)
           return (
             <Link key={device.id} href={`/dashboard/devices/${device.id}`}>
-              <Card className="cursor-pointer border-border bg-[#111827] transition-colors hover:border-[#3b82f6]/50">
+              <Card className="cursor-pointer border-border bg-card transition-colors hover:border-primary/50">
                 <CardContent className="flex flex-col gap-3 pt-6">
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-2">
-                      <Monitor className="size-4 text-[#3b82f6]" />
+                      <Monitor className="size-4 text-primary" />
                       <span className="text-sm font-semibold text-foreground">{device.name}</span>
                     </div>
                     <div className="flex items-center gap-1.5">

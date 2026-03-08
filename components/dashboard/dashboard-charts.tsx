@@ -28,9 +28,9 @@ export function DashboardCharts() {
   return (
     <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
       {/* Login Attempts Over Time */}
-      <Card className="border-cyan-500/20 bg-gradient-to-br from-slate-900/50 to-slate-800/30 overflow-hidden group hover:border-cyan-500/40 hover:shadow-lg hover:shadow-cyan-500/10 transition-all duration-200">
-        <CardHeader className="border-b border-cyan-500/10 pb-3">
-          <CardTitle className="text-sm font-medium text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-emerald-400">Login Attempts Over Time</CardTitle>
+      <Card className="border-border dark:border-cyan-500/20 bg-card dark:bg-gradient-to-br dark:from-slate-900/50 dark:to-slate-800/30 overflow-hidden group hover:border-primary dark:hover:border-cyan-500/40 hover:shadow-lg dark:hover:shadow-cyan-500/10 transition-all duration-200">
+        <CardHeader className="border-b border-border dark:border-cyan-500/10 pb-3">
+          <CardTitle className="text-sm font-medium text-foreground dark:text-transparent dark:bg-clip-text dark:bg-gradient-to-r dark:from-cyan-400 dark:to-emerald-400">Login Attempts Over Time</CardTitle>
         </CardHeader>
         <CardContent className="pt-4">
           <ResponsiveContainer width="100%" height={250}>
@@ -48,9 +48,9 @@ export function DashboardCharts() {
       </Card>
 
       {/* File Changes Per Day */}
-      <Card className="border-cyan-500/20 bg-gradient-to-br from-slate-900/50 to-slate-800/30 overflow-hidden group hover:border-cyan-500/40 hover:shadow-lg hover:shadow-cyan-500/10 transition-all duration-200">
-        <CardHeader className="border-b border-cyan-500/10 pb-3">
-          <CardTitle className="text-sm font-medium text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-emerald-400">File Changes Per Day</CardTitle>
+      <Card className="border-border dark:border-cyan-500/20 bg-card dark:bg-gradient-to-br dark:from-slate-900/50 dark:to-slate-800/30 overflow-hidden group hover:border-primary dark:hover:border-cyan-500/40 hover:shadow-lg dark:hover:shadow-cyan-500/10 transition-all duration-200">
+        <CardHeader className="border-b border-border dark:border-cyan-500/10 pb-3">
+          <CardTitle className="text-sm font-medium text-foreground dark:text-transparent dark:bg-clip-text dark:bg-gradient-to-r dark:from-cyan-400 dark:to-emerald-400">File Changes Per Day</CardTitle>
         </CardHeader>
         <CardContent className="pt-4">
           <ResponsiveContainer width="100%" height={250}>
@@ -66,9 +66,9 @@ export function DashboardCharts() {
       </Card>
 
       {/* USB Activity Per Day */}
-      <Card className="border-cyan-500/20 bg-gradient-to-br from-slate-900/50 to-slate-800/30 overflow-hidden group hover:border-cyan-500/40 hover:shadow-lg hover:shadow-cyan-500/10 transition-all duration-200">
-        <CardHeader className="border-b border-cyan-500/10 pb-3">
-          <CardTitle className="text-sm font-medium text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-emerald-400">USB Activity Per Day</CardTitle>
+      <Card className="border-border dark:border-cyan-500/20 bg-card dark:bg-gradient-to-br dark:from-slate-900/50 dark:to-slate-800/30 overflow-hidden group hover:border-primary dark:hover:border-cyan-500/40 hover:shadow-lg dark:hover:shadow-cyan-500/10 transition-all duration-200">
+        <CardHeader className="border-b border-border dark:border-cyan-500/10 pb-3">
+          <CardTitle className="text-sm font-medium text-foreground dark:text-transparent dark:bg-clip-text dark:bg-gradient-to-r dark:from-cyan-400 dark:to-emerald-400">USB Activity Per Day</CardTitle>
         </CardHeader>
         <CardContent className="pt-4">
           <ResponsiveContainer width="100%" height={250}>
@@ -84,9 +84,9 @@ export function DashboardCharts() {
       </Card>
 
       {/* Critical Alerts Trend */}
-      <Card className="border-cyan-500/20 bg-gradient-to-br from-slate-900/50 to-slate-800/30 overflow-hidden group hover:border-cyan-500/40 hover:shadow-lg hover:shadow-cyan-500/10 transition-all duration-200">
-        <CardHeader className="border-b border-cyan-500/10 pb-3">
-          <CardTitle className="text-sm font-medium text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-emerald-400">Alert Trends</CardTitle>
+      <Card className="border-border dark:border-cyan-500/20 bg-card dark:bg-gradient-to-br dark:from-slate-900/50 dark:to-slate-800/30 overflow-hidden group hover:border-primary dark:hover:border-cyan-500/40 hover:shadow-lg dark:hover:shadow-cyan-500/10 transition-all duration-200">
+        <CardHeader className="border-b border-border dark:border-cyan-500/10 pb-3">
+          <CardTitle className="text-sm font-medium text-foreground dark:text-transparent dark:bg-clip-text dark:bg-gradient-to-r dark:from-cyan-400 dark:to-emerald-400">Alert Trends</CardTitle>
         </CardHeader>
         <CardContent className="pt-4">
           <ResponsiveContainer width="100%" height={250}>

@@ -64,7 +64,7 @@ export default function MonitoringPoliciesPage() {
     <div className="flex flex-col gap-6">
       <div className="flex items-center gap-3">
         <div className="flex size-10 items-center justify-center rounded-lg bg-[#3b82f6]/15">
-          <Sliders className="size-5 text-[#3b82f6]" />
+          <Sliders className="size-5 text-primary" />
         </div>
         <div>
           <h2 className="text-xl font-bold text-foreground">Monitoring Policies</h2>
@@ -74,10 +74,10 @@ export default function MonitoringPoliciesPage() {
         </div>
       </div>
 
-      <Card className="border-border bg-[#111827]">
+      <Card className="border-border bg-card">
         <CardContent className="pt-6">
-          <div className="flex items-start gap-3 rounded-lg border border-[#3b82f6]/20 bg-[#3b82f6]/5 p-4">
-            <Globe className="mt-0.5 size-5 shrink-0 text-[#3b82f6]" />
+          <div className="flex items-start gap-3 rounded-lg border border-primary/20 bg-primary/5 p-4">
+            <Globe className="mt-0.5 size-5 shrink-0 text-primary" />
             <div>
               <p className="text-sm font-medium text-foreground">Institutional Policy Customization</p>
               <p className="mt-1 text-xs text-muted-foreground leading-relaxed">
@@ -97,7 +97,7 @@ export default function MonitoringPoliciesPage() {
         </h3>
         <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
           {modules.map((mod) => (
-            <Card key={mod.key} className="border-border bg-[#111827]">
+            <Card key={mod.key} className="border-border bg-card">
               <CardContent className="pt-6">
                 <div className="flex items-start justify-between gap-3">
                   <div className="flex items-start gap-3">
@@ -130,7 +130,7 @@ export default function MonitoringPoliciesPage() {
         <h3 className="mb-3 text-sm font-semibold uppercase tracking-wider text-muted-foreground">
           Per-Device Overrides
         </h3>
-        <Card className="border-border bg-[#111827]">
+        <Card className="border-border bg-card">
           <CardContent className="pt-6">
             <Table>
               <TableHeader>

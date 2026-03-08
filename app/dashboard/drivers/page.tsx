@@ -28,10 +28,10 @@ export default function DriversPage() {
 
       {/* Summary Cards */}
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
-        <Card className="border-border bg-[#111827]">
+        <Card className="border-border bg-card">
           <CardContent className="flex items-center gap-4 pt-6">
             <div className="flex size-10 items-center justify-center rounded-lg bg-[#3b82f6]/15">
-              <HardDrive className="size-5 text-[#3b82f6]" />
+              <HardDrive className="size-5 text-primary" />
             </div>
             <div>
               <p className="text-2xl font-bold text-foreground">{mockDrivers.length}</p>
@@ -39,7 +39,7 @@ export default function DriversPage() {
             </div>
           </CardContent>
         </Card>
-        <Card className="border-border bg-[#111827]">
+        <Card className="border-border bg-card">
           <CardContent className="flex items-center gap-4 pt-6">
             <div className="flex size-10 items-center justify-center rounded-lg bg-[#f59e0b]/15">
               <HardDrive className="size-5 text-[#f59e0b]" />
@@ -50,7 +50,7 @@ export default function DriversPage() {
             </div>
           </CardContent>
         </Card>
-        <Card className="border-border bg-[#111827]">
+        <Card className="border-border bg-card">
           <CardContent className="flex items-center gap-4 pt-6">
             <div className="flex size-10 items-center justify-center rounded-lg bg-[#ef4444]/15">
               <MonitorSmartphone className="size-5 text-[#ef4444]" />
@@ -64,7 +64,7 @@ export default function DriversPage() {
       </div>
 
       {/* Drivers Table */}
-      <Card className="border-border bg-[#111827]">
+      <Card className="border-border bg-card">
         <CardHeader>
           <CardTitle className="text-sm font-medium text-foreground">Installed Drivers</CardTitle>
         </CardHeader>
@@ -82,7 +82,7 @@ export default function DriversPage() {
             <TableBody>
               {mockDrivers.map((driver, i) => (
                 <TableRow key={i} className={`border-border ${driver.newlyAdded ? "bg-[#f59e0b]/5" : ""}`}>
-                  <TableCell className="text-xs font-medium text-[#3b82f6]">{driver.device}</TableCell>
+                  <TableCell className="text-xs font-medium text-primary">{driver.device}</TableCell>
                   <TableCell className="text-xs text-foreground">{driver.name}</TableCell>
                   <TableCell className="font-mono text-xs text-muted-foreground">{driver.version}</TableCell>
                   <TableCell className="text-xs text-muted-foreground">{driver.date}</TableCell>
@@ -101,7 +101,7 @@ export default function DriversPage() {
       </Card>
 
       {/* OS Versions */}
-      <Card className="border-border bg-[#111827]">
+      <Card className="border-border bg-card">
         <CardHeader>
           <CardTitle className="text-sm font-medium text-foreground">OS Version per Device</CardTitle>
         </CardHeader>
@@ -120,7 +120,7 @@ export default function DriversPage() {
                 const isOutdated = outdatedDevices.includes(device)
                 return (
                   <TableRow key={device.id} className={`border-border ${isOutdated ? "bg-[#ef4444]/5" : ""}`}>
-                    <TableCell className="text-xs font-medium text-[#3b82f6]">{device.name}</TableCell>
+                    <TableCell className="text-xs font-medium text-primary">{device.name}</TableCell>
                     <TableCell className="text-xs text-foreground">{device.os}</TableCell>
                     <TableCell className="font-mono text-xs text-muted-foreground">{device.osVersion}</TableCell>
                     <TableCell>

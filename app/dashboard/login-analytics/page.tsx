@@ -42,7 +42,7 @@ export default function LoginAnalyticsPage() {
     <div className="flex flex-col gap-6">
       <div className="flex items-center gap-3">
         <div className="flex size-10 items-center justify-center rounded-lg bg-[#3b82f6]/15">
-          <LogIn className="size-5 text-[#3b82f6]" />
+          <LogIn className="size-5 text-primary" />
         </div>
         <div>
           <h2 className="text-xl font-bold text-foreground">Login Analytics</h2>
@@ -52,7 +52,7 @@ export default function LoginAnalyticsPage() {
 
       {/* Summary Cards */}
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
-        <Card className="border-border bg-[#111827]">
+        <Card className="border-border bg-card">
           <CardContent className="flex items-center gap-4 pt-6">
             <div className="flex size-10 items-center justify-center rounded-lg bg-[#10b981]/15">
               <LogIn className="size-5 text-[#10b981]" />
@@ -63,7 +63,7 @@ export default function LoginAnalyticsPage() {
             </div>
           </CardContent>
         </Card>
-        <Card className="border-border bg-[#111827]">
+        <Card className="border-border bg-card">
           <CardContent className="flex items-center gap-4 pt-6">
             <div className="flex size-10 items-center justify-center rounded-lg bg-[#ef4444]/15">
               <LogIn className="size-5 text-[#ef4444]" />
@@ -74,7 +74,7 @@ export default function LoginAnalyticsPage() {
             </div>
           </CardContent>
         </Card>
-        <Card className="border-border bg-[#111827]">
+        <Card className="border-border bg-card">
           <CardContent className="flex items-center gap-4 pt-6">
             <div className="flex size-10 items-center justify-center rounded-lg bg-[#f59e0b]/15">
               <AlertTriangle className="size-5 text-[#f59e0b]" />
@@ -85,7 +85,7 @@ export default function LoginAnalyticsPage() {
             </div>
           </CardContent>
         </Card>
-        <Card className="border-border bg-[#111827]">
+        <Card className="border-border bg-card">
           <CardContent className="flex items-center gap-4 pt-6">
             <div className="flex size-10 items-center justify-center rounded-lg bg-[#ef4444]/15">
               <AlertTriangle className="size-5 text-[#ef4444]" />
@@ -102,7 +102,7 @@ export default function LoginAnalyticsPage() {
 
       {/* Charts */}
       <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
-        <Card className="border-border bg-[#111827]">
+        <Card className="border-border bg-card">
           <CardHeader>
             <CardTitle className="text-sm font-medium text-foreground">Success vs Failed Logins</CardTitle>
           </CardHeader>
@@ -122,7 +122,7 @@ export default function LoginAnalyticsPage() {
           </CardContent>
         </Card>
 
-        <Card className="border-border bg-[#111827]">
+        <Card className="border-border bg-card">
           <CardHeader>
             <CardTitle className="text-sm font-medium text-foreground">Top Users by Login Attempts</CardTitle>
           </CardHeader>
@@ -143,7 +143,7 @@ export default function LoginAnalyticsPage() {
       </div>
 
       {/* Login Activity Table */}
-      <Card className="border-border bg-[#111827]">
+      <Card className="border-border bg-card">
         <CardHeader>
           <CardTitle className="text-sm font-medium text-foreground">Recent Login Activity</CardTitle>
         </CardHeader>
@@ -162,7 +162,7 @@ export default function LoginAnalyticsPage() {
               {mockLoginActivity.map((login, i) => (
                 <TableRow key={i} className={`border-border ${login.afterHours ? "bg-[#f59e0b]/5" : ""}`}>
                   <TableCell className="font-mono text-xs text-foreground">{login.user}</TableCell>
-                  <TableCell className="text-xs font-medium text-[#3b82f6]">{login.device}</TableCell>
+                  <TableCell className="text-xs font-medium text-primary">{login.device}</TableCell>
                   <TableCell className="text-xs text-muted-foreground">{formatUTCDate(login.timestamp)}</TableCell>
                   <TableCell>
                     <Badge className={login.success

@@ -26,7 +26,7 @@ export default function FileIntegrityPage() {
     <div className="flex flex-col gap-6">
       <div className="flex items-center gap-3">
         <div className="flex size-10 items-center justify-center rounded-lg bg-[#3b82f6]/15">
-          <FileText className="size-5 text-[#3b82f6]" />
+          <FileText className="size-5 text-primary" />
         </div>
         <div>
           <h2 className="text-xl font-bold text-foreground">File Integrity Monitoring</h2>
@@ -41,11 +41,11 @@ export default function FileIntegrityPage() {
             placeholder="Search files or devices..."
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            className="border-border bg-[#111827] pl-9 text-foreground"
+            className="border-border bg-card pl-9 text-foreground"
           />
         </div>
         <Select value={actionFilter} onValueChange={setActionFilter}>
-          <SelectTrigger className="w-36 border-border bg-[#111827] text-foreground">
+          <SelectTrigger className="w-36 border-border bg-card text-foreground">
             <SelectValue placeholder="Action" />
           </SelectTrigger>
           <SelectContent>
@@ -60,14 +60,14 @@ export default function FileIntegrityPage() {
           className={`rounded-lg border px-3 py-2 text-xs font-medium transition-colors ${
             criticalOnly
               ? "border-[#ef4444]/30 bg-[#ef4444]/15 text-[#ef4444]"
-              : "border-border bg-[#111827] text-muted-foreground hover:text-foreground"
+              : "border-border bg-card text-muted-foreground hover:text-foreground"
           }`}
         >
           Critical Only
         </button>
       </div>
 
-      <Card className="border-border bg-[#111827]">
+      <Card className="border-border bg-card">
         <CardContent className="pt-6">
           <Table>
             <TableHeader>
@@ -94,7 +94,7 @@ export default function FileIntegrityPage() {
                     }>{file.action}</Badge>
                   </TableCell>
                   <TableCell className="text-xs text-muted-foreground">{file.user}</TableCell>
-                  <TableCell className="text-xs font-medium text-[#3b82f6]">{file.device}</TableCell>
+                  <TableCell className="text-xs font-medium text-primary">{file.device}</TableCell>
                   <TableCell className="text-xs text-muted-foreground">{formatUTCDate(file.timestamp)}</TableCell>
                 </TableRow>
               ))}

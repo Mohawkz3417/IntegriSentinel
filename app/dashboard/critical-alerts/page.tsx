@@ -20,7 +20,7 @@ const criticalTypes = [
 const severityColors: Record<string, string> = {
   critical: "bg-[#ef4444]/15 text-[#ef4444] border-[#ef4444]/30",
   high: "bg-[#f59e0b]/15 text-[#f59e0b] border-[#f59e0b]/30",
-  medium: "bg-[#3b82f6]/15 text-[#3b82f6] border-[#3b82f6]/30",
+  medium: "bg-[#3b82f6]/15 text-primary border-[#3b82f6]/30",
   low: "bg-[#64748b]/15 text-[#94a3b8] border-[#64748b]/30",
 }
 
@@ -47,7 +47,7 @@ export default function CriticalAlertsPage() {
         {criticalTypes.map((type) => {
           const count = criticalAlerts.filter((a) => a.type.includes(type)).length
           return (
-            <Card key={type} className="border-border bg-[#111827]">
+            <Card key={type} className="border-border bg-card">
               <CardContent className="flex flex-col items-center gap-1 pt-6 text-center">
                 <span className="text-2xl font-bold text-foreground">{count}</span>
                 <span className="text-xs text-muted-foreground">{type}</span>
@@ -60,7 +60,7 @@ export default function CriticalAlertsPage() {
       <ScrollArea className="h-[600px]">
         <div className="flex flex-col gap-3 pr-4">
           {criticalAlerts.map((alert) => (
-            <Card key={alert.id} className="border-border bg-[#111827]">
+            <Card key={alert.id} className="border-border bg-card">
               <CardContent className="pt-6">
                 <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
                   <div className="flex flex-col gap-1">
@@ -70,7 +70,7 @@ export default function CriticalAlertsPage() {
                       </Badge>
                       <span className="text-sm font-semibold text-foreground">{alert.type}</span>
                     </div>
-                    <span className="text-xs font-medium text-[#3b82f6]">{alert.device}</span>
+                    <span className="text-xs font-medium text-primary">{alert.device}</span>
                     <p className="text-xs text-muted-foreground leading-relaxed">{alert.description}</p>
                     <span className="text-xs text-muted-foreground">
                       {formatUTCDate(alert.timestamp)}

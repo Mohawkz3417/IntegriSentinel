@@ -44,19 +44,19 @@ export default function NetworkPage() {
 
       {/* Summary Cards */}
       <div className="grid grid-cols-2 gap-4 lg:grid-cols-4">
-        <Card className="border-border bg-[#111827]">
+        <Card className="border-border bg-card">
           <CardContent className="flex flex-col items-center gap-1 pt-6">
             <span className="text-3xl font-bold text-foreground">{totalPorts}</span>
             <span className="text-xs text-muted-foreground">Open Ports</span>
           </CardContent>
         </Card>
-        <Card className="border-border bg-[#111827]">
+        <Card className="border-border bg-card">
           <CardContent className="flex flex-col items-center gap-1 pt-6">
             <span className="text-3xl font-bold text-[#ef4444]">{suspiciousPorts}</span>
             <span className="text-xs text-muted-foreground">Suspicious Ports</span>
           </CardContent>
         </Card>
-        <Card className="border-border bg-[#111827]">
+        <Card className="border-border bg-card">
           <CardContent className="flex flex-col items-center gap-1 pt-6">
             <div className="flex items-center gap-2">
               <Shield className="size-5 text-[#10b981]" />
@@ -65,7 +65,7 @@ export default function NetworkPage() {
             <span className="text-xs text-muted-foreground">Firewall Enabled</span>
           </CardContent>
         </Card>
-        <Card className="border-border bg-[#111827]">
+        <Card className="border-border bg-card">
           <CardContent className="flex flex-col items-center gap-1 pt-6">
             <div className="flex items-center gap-2">
               <ShieldOff className="size-5 text-[#ef4444]" />
@@ -77,7 +77,7 @@ export default function NetworkPage() {
       </div>
 
       {/* Chart */}
-      <Card className="border-border bg-[#111827]">
+      <Card className="border-border bg-card">
         <CardHeader>
           <CardTitle className="text-sm font-medium text-foreground">Open Ports by Device</CardTitle>
         </CardHeader>
@@ -96,7 +96,7 @@ export default function NetworkPage() {
       </Card>
 
       {/* Ports Table */}
-      <Card className="border-border bg-[#111827]">
+      <Card className="border-border bg-card">
         <CardHeader>
           <CardTitle className="text-sm font-medium text-foreground">All Open Ports</CardTitle>
         </CardHeader>
@@ -113,7 +113,7 @@ export default function NetworkPage() {
             <TableBody>
               {mockOpenPorts.map((port, i) => (
                 <TableRow key={i} className={`border-border ${port.suspicious ? "bg-[#ef4444]/5" : ""}`}>
-                  <TableCell className="text-xs font-medium text-[#3b82f6]">{port.device}</TableCell>
+                  <TableCell className="text-xs font-medium text-primary">{port.device}</TableCell>
                   <TableCell className="font-mono text-xs text-foreground">{port.port}</TableCell>
                   <TableCell className="text-xs text-muted-foreground">{port.service}</TableCell>
                   <TableCell>
