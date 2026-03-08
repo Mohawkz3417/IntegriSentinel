@@ -49,6 +49,17 @@ const FLASK_API_URL = process.env.NEXT_PUBLIC_FLASK_API_URL || ""
 // Set to true when your Flask backend is ready
 const USE_LIVE_API = !!FLASK_API_URL
 
+// Log connection status on first load (helpful for debugging)
+if (typeof window !== "undefined") {
+  if (USE_LIVE_API) {
+    console.info(`[IntegriSentinel] Connected to Flask API: ${FLASK_API_URL}`)
+  } else {
+    console.info("[IntegriSentinel] Running in DEMO MODE with mock data")
+    console.info("[IntegriSentinel] To connect Flask backend, set environment variable:")
+    console.info("  NEXT_PUBLIC_FLASK_API_URL=http://your-flask-server:5000")
+  }
+}
+
 // ============================================
 // API FETCHER
 // ============================================
