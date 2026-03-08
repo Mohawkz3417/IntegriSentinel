@@ -43,7 +43,7 @@ export default function AlertsPage() {
 
       <div className="flex flex-wrap items-center gap-3">
         <Select value={severityFilter} onValueChange={setSeverityFilter}>
-          <SelectTrigger className="w-40 border-border bg-[#111827] text-foreground">
+          <SelectTrigger className="w-40 border-border bg-card text-foreground">
             <SelectValue placeholder="Severity" />
           </SelectTrigger>
           <SelectContent>
@@ -55,7 +55,7 @@ export default function AlertsPage() {
           </SelectContent>
         </Select>
         <Select value={statusFilter} onValueChange={setStatusFilter}>
-          <SelectTrigger className="w-40 border-border bg-[#111827] text-foreground">
+          <SelectTrigger className="w-40 border-border bg-card text-foreground">
             <SelectValue placeholder="Status" />
           </SelectTrigger>
           <SelectContent>
@@ -67,7 +67,7 @@ export default function AlertsPage() {
         </Select>
       </div>
 
-      <Card className="border-border bg-[#111827]">
+      <Card className="border-border bg-card">
         <CardContent className="pt-6">
           <Table>
             <TableHeader>
@@ -85,7 +85,7 @@ export default function AlertsPage() {
               {filtered.map((alert) => (
                 <TableRow key={alert.id} className="border-border">
                   <TableCell className="text-xs text-muted-foreground">{formatUTCDate(alert.timestamp)}</TableCell>
-                  <TableCell className="text-xs font-medium text-[#3b82f6]">{alert.device}</TableCell>
+                  <TableCell className="text-xs font-medium text-primary">{alert.device}</TableCell>
                   <TableCell className="text-xs text-foreground">{alert.type}</TableCell>
                   <TableCell>
                     <Badge className={severityColors[alert.severity] + " hover:bg-transparent"}>{alert.severity}</Badge>

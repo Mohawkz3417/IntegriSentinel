@@ -47,7 +47,7 @@ export default function RiskIntelligencePage() {
       </div>
 
       {/* Risk Trend Chart */}
-      <Card className="border-border bg-[#111827]">
+      <Card className="border-border bg-card">
         <CardHeader>
           <CardTitle className="text-sm font-medium text-foreground">Institutional Risk Trend</CardTitle>
         </CardHeader>
@@ -65,7 +65,7 @@ export default function RiskIntelligencePage() {
       </Card>
 
       {/* Risk Ranking */}
-      <Card className="border-border bg-[#111827]">
+      <Card className="border-border bg-card">
         <CardHeader>
           <CardTitle className="text-sm font-medium text-foreground">Devices Ranked by Risk</CardTitle>
         </CardHeader>
@@ -92,7 +92,7 @@ export default function RiskIntelligencePage() {
                 return (
                   <TableRow key={device.id} className="border-border">
                     <TableCell className="text-sm font-bold text-foreground">#{i + 1}</TableCell>
-                    <TableCell className="text-xs font-medium text-[#3b82f6]">{device.name}</TableCell>
+                    <TableCell className="text-xs font-medium text-primary">{device.name}</TableCell>
                     <TableCell className="text-xs text-muted-foreground">{device.department}</TableCell>
                     <TableCell>
                       <span className="text-sm font-bold" style={{ color: riskColor }}>{device.riskLevel}/100</span>
@@ -119,7 +119,7 @@ export default function RiskIntelligencePage() {
       </Card>
 
       {/* Risk Breakdown */}
-      <Card className="border-border bg-[#111827]">
+      <Card className="border-border bg-card">
         <CardHeader>
           <CardTitle className="text-sm font-medium text-foreground">Risk Factor Explanation</CardTitle>
         </CardHeader>
@@ -133,7 +133,7 @@ export default function RiskIntelligencePage() {
               { factor: "Malicious Hash Detected", desc: "Files matching known malicious hashes require immediate action", color: "#ef4444" },
               { factor: "Outdated OS", desc: "Unpatched systems are vulnerable to known exploits", color: "#06b6d4" },
             ].map((item) => (
-              <div key={item.factor} className="rounded-lg border border-border bg-[#0a0e1a] p-4">
+              <div key={item.factor} className="rounded-lg border border-border bg-secondary p-4">
                 <div className="mb-2 flex items-center gap-2">
                   <div className="size-2 rounded-full" style={{ backgroundColor: item.color }} />
                   <span className="text-sm font-medium text-foreground">{item.factor}</span>

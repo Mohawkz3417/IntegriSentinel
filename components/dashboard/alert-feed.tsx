@@ -17,7 +17,7 @@ const severityColors: Record<string, string> = {
 
 export function AlertFeed() {
   return (
-    <Card className="border-border bg-[#111827]">
+    <Card className="border-border bg-card">
       <CardHeader>
         <CardTitle className="text-sm font-medium text-foreground">Real-Time Alert Feed</CardTitle>
       </CardHeader>
@@ -27,7 +27,7 @@ export function AlertFeed() {
             {mockAlerts.map((alert) => (
               <div
                 key={alert.id}
-                className="flex flex-col gap-2 rounded-lg border border-border bg-[#0a0e1a] p-3"
+                className="flex flex-col gap-2 rounded-lg border border-border bg-secondary p-3"
               >
                 <div className="flex items-center justify-between gap-2">
                   <span className="text-xs text-muted-foreground">

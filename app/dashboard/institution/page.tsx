@@ -70,9 +70,9 @@ export default function InstitutionPage() {
   return (
     <div className="flex flex-col gap-6">
       {/* Header with editable institution name */}
-      <div className="flex items-start gap-4 rounded-lg border border-cyan-500/20 bg-gradient-to-r from-slate-900/50 to-slate-800/30 p-6 backdrop-blur-sm">
-        <div className="flex size-12 shrink-0 items-center justify-center rounded-lg border border-cyan-500/30 bg-gradient-to-br from-cyan-500/20 to-cyan-500/10 shadow-lg shadow-cyan-500/10">
-          <Building2 className="size-6 text-cyan-400" />
+      <div className="flex items-start gap-4 rounded-lg border border-border dark:border-cyan-500/20 bg-card dark:bg-gradient-to-r dark:from-slate-900/50 dark:to-slate-800/30 p-6 backdrop-blur-sm">
+        <div className="flex size-12 shrink-0 items-center justify-center rounded-lg border border-primary/30 dark:border-cyan-500/30 bg-primary/10 dark:bg-gradient-to-br dark:from-cyan-500/20 dark:to-cyan-500/10 shadow-lg shadow-primary/10 dark:shadow-cyan-500/10">
+          <Building2 className="size-6 text-primary dark:text-cyan-400" />
         </div>
         <div className="flex flex-col gap-2 flex-1">
           {editingName ? (
@@ -98,7 +98,7 @@ export default function InstitutionPage() {
             </div>
           ) : (
             <div className="flex items-center gap-3">
-              <h2 className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-emerald-400">{institutionName}</h2>
+              <h2 className="text-2xl font-bold text-foreground dark:text-transparent dark:bg-clip-text dark:bg-gradient-to-r dark:from-cyan-400 dark:to-emerald-400">{institutionName}</h2>
               <Button
                 size="icon"
                 variant="ghost"
@@ -119,49 +119,49 @@ export default function InstitutionPage() {
 
       {/* Summary Cards */}
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
-        <Card className="group border-cyan-500/20 bg-gradient-to-br from-slate-900/50 to-slate-800/30 hover:border-cyan-500/40 hover:shadow-lg hover:shadow-cyan-500/20 transition-all duration-300 overflow-hidden relative animate-bounce-in" style={{ animationDelay: "0ms" }}>
-          <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/0 via-cyan-500/5 to-cyan-500/0 group-hover:via-cyan-500/10 transition-all" />
+        <Card className="group border-border dark:border-cyan-500/20 bg-card dark:bg-gradient-to-br dark:from-slate-900/50 dark:to-slate-800/30 hover:border-primary dark:hover:border-cyan-500/40 hover:shadow-lg dark:hover:shadow-cyan-500/20 transition-all duration-300 overflow-hidden relative animate-bounce-in" style={{ animationDelay: "0ms" }}>
+          <div className="absolute inset-0 bg-gradient-to-r from-primary/0 via-primary/5 to-primary/0 dark:from-cyan-500/0 dark:via-cyan-500/5 dark:to-cyan-500/0 group-hover:via-primary/10 dark:group-hover:via-cyan-500/10 transition-all" />
           <CardContent className="flex flex-col items-center gap-1 pt-6 relative z-10">
-            <span className="text-3xl font-bold text-cyan-400 group-hover:text-cyan-300 transition-colors">{entities.length}</span>
-            <span className="text-xs text-muted-foreground group-hover:text-cyan-300/70 transition-colors">Entities</span>
+            <span className="text-3xl font-bold text-primary dark:text-cyan-400 group-hover:text-primary dark:group-hover:text-cyan-300 transition-colors">{entities.length}</span>
+            <span className="text-xs text-muted-foreground transition-colors">Entities</span>
           </CardContent>
         </Card>
-        <Card className="group border-cyan-500/20 bg-gradient-to-br from-slate-900/50 to-slate-800/30 hover:border-cyan-500/40 hover:shadow-lg hover:shadow-cyan-500/20 transition-all duration-300 overflow-hidden relative animate-bounce-in" style={{ animationDelay: "50ms" }}>
-          <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/0 via-cyan-500/5 to-cyan-500/0 group-hover:via-cyan-500/10 transition-all" />
+        <Card className="group border-border dark:border-cyan-500/20 bg-card dark:bg-gradient-to-br dark:from-slate-900/50 dark:to-slate-800/30 hover:border-primary dark:hover:border-cyan-500/40 hover:shadow-lg dark:hover:shadow-cyan-500/20 transition-all duration-300 overflow-hidden relative animate-bounce-in" style={{ animationDelay: "50ms" }}>
+          <div className="absolute inset-0 bg-gradient-to-r from-primary/0 via-primary/5 to-primary/0 dark:from-cyan-500/0 dark:via-cyan-500/5 dark:to-cyan-500/0 group-hover:via-primary/10 dark:group-hover:via-cyan-500/10 transition-all" />
           <CardContent className="flex flex-col items-center gap-1 pt-6 relative z-10">
-            <span className="text-3xl font-bold text-cyan-400 group-hover:text-cyan-300 transition-colors">{totalDevices}</span>
-            <span className="text-xs text-muted-foreground group-hover:text-cyan-300/70 transition-colors">Total Devices</span>
+            <span className="text-3xl font-bold text-primary dark:text-cyan-400 group-hover:text-primary dark:group-hover:text-cyan-300 transition-colors">{totalDevices}</span>
+            <span className="text-xs text-muted-foreground transition-colors">Total Devices</span>
           </CardContent>
         </Card>
-        <Card className="group border-emerald-500/20 bg-gradient-to-br from-slate-900/50 to-slate-800/30 hover:border-emerald-500/40 hover:shadow-lg hover:shadow-emerald-500/20 transition-all duration-300 overflow-hidden relative animate-bounce-in" style={{ animationDelay: "100ms" }}>
-          <div className="absolute inset-0 bg-gradient-to-r from-emerald-500/0 via-emerald-500/5 to-emerald-500/0 group-hover:via-emerald-500/10 transition-all" />
+        <Card className="group border-border dark:border-emerald-500/20 bg-card dark:bg-gradient-to-br dark:from-slate-900/50 dark:to-slate-800/30 hover:border-success dark:hover:border-emerald-500/40 hover:shadow-lg dark:hover:shadow-emerald-500/20 transition-all duration-300 overflow-hidden relative animate-bounce-in" style={{ animationDelay: "100ms" }}>
+          <div className="absolute inset-0 bg-gradient-to-r from-success/0 via-success/5 to-success/0 dark:from-emerald-500/0 dark:via-emerald-500/5 dark:to-emerald-500/0 group-hover:via-success/10 dark:group-hover:via-emerald-500/10 transition-all" />
           <CardContent className="flex flex-col items-center gap-1 pt-6 relative z-10">
-            <span className="text-3xl font-bold text-emerald-400 group-hover:text-emerald-300 transition-colors">{complianceRate}%</span>
-            <span className="text-xs text-muted-foreground group-hover:text-emerald-300/70 transition-colors">Compliance Rate</span>
+            <span className="text-3xl font-bold text-success dark:text-emerald-400 transition-colors">{complianceRate}%</span>
+            <span className="text-xs text-muted-foreground transition-colors">Compliance Rate</span>
           </CardContent>
         </Card>
-        <Card className="group border-cyan-500/20 bg-gradient-to-br from-slate-900/50 to-slate-800/30 hover:border-cyan-500/40 hover:shadow-lg hover:shadow-cyan-500/20 transition-all duration-300 overflow-hidden relative animate-bounce-in" style={{ animationDelay: "150ms" }}>
-          <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/0 via-cyan-500/5 to-cyan-500/0 group-hover:via-cyan-500/10 transition-all" />
+        <Card className="group border-border dark:border-cyan-500/20 bg-card dark:bg-gradient-to-br dark:from-slate-900/50 dark:to-slate-800/30 hover:border-primary dark:hover:border-cyan-500/40 hover:shadow-lg dark:hover:shadow-cyan-500/20 transition-all duration-300 overflow-hidden relative animate-bounce-in" style={{ animationDelay: "150ms" }}>
+          <div className="absolute inset-0 bg-gradient-to-r from-primary/0 via-primary/5 to-primary/0 dark:from-cyan-500/0 dark:via-cyan-500/5 dark:to-cyan-500/0 group-hover:via-primary/10 dark:group-hover:via-cyan-500/10 transition-all" />
           <CardContent className="flex flex-col items-center gap-1 pt-6 relative z-10">
-            <span className="text-3xl font-bold text-cyan-400 group-hover:text-cyan-300 transition-colors">
+            <span className="text-3xl font-bold text-primary dark:text-cyan-400 group-hover:text-primary dark:group-hover:text-cyan-300 transition-colors">
               {mockDepartments.filter(d => d.devices > 0).length}
             </span>
-            <span className="text-xs text-muted-foreground group-hover:text-cyan-300/70 transition-colors">Active Departments</span>
+            <span className="text-xs text-muted-foreground transition-colors">Active Departments</span>
           </CardContent>
         </Card>
       </div>
 
       {/* Entity Management */}
-      <Card className="border-cyan-500/20 bg-gradient-to-br from-slate-900/50 to-slate-800/30 overflow-hidden">
-        <CardHeader className="border-b border-cyan-500/10 pb-4">
-          <CardTitle className="flex items-center gap-2 text-lg font-semibold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-emerald-400">
-            <MapPin className="size-5 text-cyan-500" />
+      <Card className="border-border dark:border-cyan-500/20 bg-card dark:bg-gradient-to-br dark:from-slate-900/50 dark:to-slate-800/30 overflow-hidden">
+        <CardHeader className="border-b border-border dark:border-cyan-500/10 pb-4">
+          <CardTitle className="flex items-center gap-2 text-lg font-semibold text-foreground dark:text-transparent dark:bg-clip-text dark:bg-gradient-to-r dark:from-cyan-400 dark:to-emerald-400">
+            <MapPin className="size-5 text-primary dark:text-cyan-500" />
             Entities / Sub-Units
           </CardTitle>
         </CardHeader>
         <CardContent className="flex flex-col gap-4">
           {/* Add new entity form */}
-          <div className="flex flex-col gap-3 rounded-lg border border-dashed border-border bg-[#0a0e1a] p-4 sm:flex-row sm:items-end">
+          <div className="flex flex-col gap-3 rounded-lg border border-dashed border-border bg-secondary p-4 sm:flex-row sm:items-end">
             <div className="flex-1">
               <label className="mb-1.5 block text-xs text-muted-foreground">Entity Name</label>
               <Input
@@ -169,13 +169,13 @@ export default function InstitutionPage() {
                 value={newEntityName}
                 onChange={(e) => setNewEntityName(e.target.value)}
                 onKeyDown={(e) => { if (e.key === "Enter") handleAddEntity() }}
-                className="border-border bg-[#111827] text-sm text-foreground"
+                className="border-border bg-card text-sm text-foreground"
               />
             </div>
             <div className="w-full sm:w-40">
               <label className="mb-1.5 block text-xs text-muted-foreground">Type</label>
               <Select value={newEntityType} onValueChange={setNewEntityType}>
-                <SelectTrigger className="border-border bg-[#111827] text-foreground">
+                <SelectTrigger className="border-border bg-card text-foreground">
                   <SelectValue />
                 </SelectTrigger>
                 <SelectContent>
@@ -188,7 +188,7 @@ export default function InstitutionPage() {
             <Button
               onClick={handleAddEntity}
               disabled={!newEntityName.trim()}
-              className="bg-[#3b82f6] text-[#ffffff] hover:bg-[#2563eb]"
+              className="bg-primary text-primary-foreground hover:bg-primary/90"
             >
               <Plus className="mr-1.5 size-4" />
               Add Entity
@@ -217,13 +217,13 @@ export default function InstitutionPage() {
                             if (e.key === "Enter") handleSaveEdit()
                             if (e.key === "Escape") handleCancelEdit()
                           }}
-                          className="h-8 border-border bg-[#0a0e1a] text-sm text-foreground"
+                          className="h-8 border-border bg-secondary text-sm text-foreground"
                           autoFocus
                         />
                       </TableCell>
                       <TableCell>
                         <Select value={editEntityType} onValueChange={setEditEntityType}>
-                          <SelectTrigger className="h-8 border-border bg-[#0a0e1a] text-foreground">
+                          <SelectTrigger className="h-8 border-border bg-secondary text-foreground">
                             <SelectValue />
                           </SelectTrigger>
                           <SelectContent>
@@ -250,7 +250,7 @@ export default function InstitutionPage() {
                     <>
                       <TableCell className="text-sm font-medium text-foreground">{entity.name}</TableCell>
                       <TableCell>
-                        <Badge className="bg-[#1e293b] text-muted-foreground border-border hover:bg-[#1e293b]">
+                        <Badge className="bg-muted text-muted-foreground border-border hover:bg-muted">
                           {entity.type}
                         </Badge>
                       </TableCell>
@@ -293,9 +293,9 @@ export default function InstitutionPage() {
       </Card>
 
       {/* Departments / Compliance (original table) */}
-      <Card className="border-cyan-500/20 bg-gradient-to-br from-slate-900/50 to-slate-800/30 overflow-hidden">
-        <CardHeader className="border-b border-cyan-500/10 pb-4">
-          <CardTitle className="text-lg font-semibold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-emerald-400">Department Compliance Status</CardTitle>
+      <Card className="border-border dark:border-cyan-500/20 bg-card dark:bg-gradient-to-br dark:from-slate-900/50 dark:to-slate-800/30 overflow-hidden">
+        <CardHeader className="border-b border-border dark:border-cyan-500/10 pb-4">
+          <CardTitle className="text-lg font-semibold text-foreground dark:text-transparent dark:bg-clip-text dark:bg-gradient-to-r dark:from-cyan-400 dark:to-emerald-400">Department Compliance Status</CardTitle>
         </CardHeader>
         <CardContent>
           <Table>
@@ -346,11 +346,11 @@ export default function InstitutionPage() {
       </Card>
 
       {/* SDG Note */}
-      <Card className="border-emerald-500/30 bg-gradient-to-br from-emerald-500/10 via-emerald-500/5 to-transparent overflow-hidden relative group hover:border-emerald-500/50 transition-all">
-        <div className="absolute inset-0 bg-gradient-to-r from-emerald-500/0 via-emerald-500/5 to-emerald-500/0 opacity-0 group-hover:opacity-100 transition-opacity" />
+      <Card className="border-success/30 dark:border-emerald-500/30 bg-success/5 dark:bg-gradient-to-br dark:from-emerald-500/10 dark:via-emerald-500/5 dark:to-transparent overflow-hidden relative group hover:border-success/50 dark:hover:border-emerald-500/50 transition-all">
+        <div className="absolute inset-0 bg-gradient-to-r from-success/0 via-success/5 to-success/0 dark:from-emerald-500/0 dark:via-emerald-500/5 dark:to-emerald-500/0 opacity-0 group-hover:opacity-100 transition-opacity" />
         <CardContent className="pt-6 relative z-10">
           <p className="text-sm text-foreground leading-relaxed">
-            This platform is aligned with <span className="font-semibold text-emerald-400">SDG 11: Sustainable Cities and Communities</span> - 
+            This platform is aligned with <span className="font-semibold text-success dark:text-emerald-400">SDG 11: Sustainable Cities and Communities</span> - 
             focused on building resilient infrastructure and safe institutions. By monitoring digital infrastructure integrity, 
             we contribute to protecting institutional assets and ensuring secure operations across educational and governmental organizations.
           </p>

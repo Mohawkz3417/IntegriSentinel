@@ -63,10 +63,10 @@ export default function MaliciousHashPage() {
 
       {/* Summary Cards */}
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
-        <Card className="border-border bg-[#111827]">
+        <Card className="border-border bg-card">
           <CardContent className="flex items-center gap-4 pt-6">
             <div className="flex size-10 items-center justify-center rounded-lg bg-[#3b82f6]/15">
-              <Hash className="size-5 text-[#3b82f6]" />
+              <Hash className="size-5 text-primary" />
             </div>
             <div>
               <p className="text-2xl font-bold text-foreground">{hashes.length}</p>
@@ -74,7 +74,7 @@ export default function MaliciousHashPage() {
             </div>
           </CardContent>
         </Card>
-        <Card className="border-border bg-[#111827]">
+        <Card className="border-border bg-card">
           <CardContent className="flex items-center gap-4 pt-6">
             <div className="flex size-10 items-center justify-center rounded-lg bg-[#10b981]/15">
               <RefreshCw className="size-5 text-[#10b981]" />
@@ -85,7 +85,7 @@ export default function MaliciousHashPage() {
             </div>
           </CardContent>
         </Card>
-        <Card className="border-border bg-[#111827]">
+        <Card className="border-border bg-card">
           <CardContent className="flex items-center gap-4 pt-6">
             <div className="flex size-10 items-center justify-center rounded-lg bg-[#10b981]/15">
               <Shield className="size-5 text-[#10b981]" />
@@ -102,7 +102,7 @@ export default function MaliciousHashPage() {
       </div>
 
       {/* Add Hash + Upload */}
-      <Card className="border-border bg-[#111827]">
+      <Card className="border-border bg-card">
         <CardHeader>
           <CardTitle className="text-sm font-medium text-foreground">Add New Hash</CardTitle>
         </CardHeader>
@@ -114,7 +114,7 @@ export default function MaliciousHashPage() {
                 placeholder="Enter MD5, SHA1 or SHA256 hash..."
                 value={newHash}
                 onChange={(e) => setNewHash(e.target.value)}
-                className="border-border bg-[#0a0e1a] font-mono text-sm text-foreground"
+                className="border-border bg-secondary font-mono text-sm text-foreground"
               />
             </div>
             <div className="w-32">
@@ -122,14 +122,14 @@ export default function MaliciousHashPage() {
               <select
                 value={newType}
                 onChange={(e) => setNewType(e.target.value)}
-                className="flex h-10 w-full rounded-md border border-border bg-[#0a0e1a] px-3 py-2 text-sm text-foreground"
+                className="flex h-10 w-full rounded-md border border-border bg-secondary px-3 py-2 text-sm text-foreground"
               >
                 <option value="MD5">MD5</option>
                 <option value="SHA1">SHA1</option>
                 <option value="SHA256">SHA256</option>
               </select>
             </div>
-            <Button onClick={handleAddHash} className="bg-[#3b82f6] text-[#ffffff] hover:bg-[#2563eb]">
+            <Button onClick={handleAddHash} className="bg-primary text-primary-foreground hover:bg-primary/90">
               <Plus className="mr-1.5 size-4" />
               Add Hash
             </Button>
@@ -148,11 +148,11 @@ export default function MaliciousHashPage() {
           placeholder="Search hashes..."
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
-          className="border-border bg-[#111827] pl-9 text-foreground"
+          className="border-border bg-card pl-9 text-foreground"
         />
       </div>
 
-      <Card className="border-border bg-[#111827]">
+      <Card className="border-border bg-card">
         <CardContent className="pt-6">
           <Table>
             <TableHeader>
@@ -171,7 +171,7 @@ export default function MaliciousHashPage() {
                     {h.hash}
                   </TableCell>
                   <TableCell>
-                    <Badge className="bg-[#3b82f6]/15 text-[#3b82f6] border-[#3b82f6]/30 hover:bg-[#3b82f6]/15">
+                    <Badge className="bg-[#3b82f6]/15 text-primary border-[#3b82f6]/30 hover:bg-[#3b82f6]/15">
                       {h.type}
                     </Badge>
                   </TableCell>

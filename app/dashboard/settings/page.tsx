@@ -38,8 +38,8 @@ export default function SettingsPage() {
   return (
     <div className="flex flex-col gap-6">
       <div className="flex items-center gap-3">
-        <div className="flex size-10 items-center justify-center rounded-lg bg-[#3b82f6]/15">
-          <SettingsIcon className="size-5 text-[#3b82f6]" />
+        <div className="flex size-10 items-center justify-center rounded-lg bg-primary/15">
+          <SettingsIcon className="size-5 text-primary" />
         </div>
         <div>
           <h2 className="text-xl font-bold text-foreground">Settings</h2>
@@ -51,10 +51,10 @@ export default function SettingsPage() {
 
       <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
         {/* Server Configuration */}
-        <Card className="border-border bg-[#111827]">
+        <Card className="border-border bg-card">
           <CardHeader>
             <CardTitle className="flex items-center gap-2 text-sm font-medium text-foreground">
-              <Server className="size-4 text-[#3b82f6]" />
+              <Server className="size-4 text-primary" />
               Server Configuration
             </CardTitle>
           </CardHeader>
@@ -64,7 +64,7 @@ export default function SettingsPage() {
               <Input
                 value={serverIp}
                 onChange={(e) => setServerIp(e.target.value)}
-                className="border-border bg-[#0a0e1a] font-mono text-sm text-foreground"
+                className="border-border bg-secondary font-mono text-sm text-foreground"
               />
             </div>
             <div>
@@ -72,13 +72,13 @@ export default function SettingsPage() {
               <Input
                 value={serverPort}
                 onChange={(e) => setServerPort(e.target.value)}
-                className="border-border bg-[#0a0e1a] font-mono text-sm text-foreground"
+                className="border-border bg-secondary font-mono text-sm text-foreground"
               />
             </div>
             <div>
               <label className="mb-1.5 block text-xs text-muted-foreground">Data Refresh Interval (seconds)</label>
               <Select value={refreshInterval} onValueChange={setRefreshInterval}>
-                <SelectTrigger className="border-border bg-[#0a0e1a] text-foreground">
+                <SelectTrigger className="border-border bg-secondary text-foreground">
                   <SelectValue />
                 </SelectTrigger>
                 <SelectContent>
@@ -100,10 +100,10 @@ export default function SettingsPage() {
         </Card>
 
         {/* Institution Settings */}
-        <Card className="border-border bg-[#111827]">
+        <Card className="border-border bg-card">
           <CardHeader>
             <CardTitle className="flex items-center gap-2 text-sm font-medium text-foreground">
-              <Building2 className="size-4 text-[#3b82f6]" />
+              <Building2 className="size-4 text-primary" />
               Institution Settings
             </CardTitle>
           </CardHeader>
@@ -113,7 +113,7 @@ export default function SettingsPage() {
               <Input
                 value={institutionName}
                 onChange={(e) => setInstitutionName(e.target.value)}
-                className="border-border bg-[#0a0e1a] text-sm text-foreground"
+                className="border-border bg-secondary text-sm text-foreground"
               />
             </div>
             <div>
@@ -121,17 +121,17 @@ export default function SettingsPage() {
               <Input
                 value="SDG 11 - Sustainable Cities and Communities"
                 disabled
-                className="border-border bg-[#0a0e1a] text-sm text-muted-foreground"
+                className="border-border bg-secondary text-sm text-muted-foreground"
               />
             </div>
           </CardContent>
         </Card>
 
         {/* Admin Profile */}
-        <Card className="border-border bg-[#111827]">
+        <Card className="border-border bg-card">
           <CardHeader>
             <CardTitle className="flex items-center gap-2 text-sm font-medium text-foreground">
-              <User className="size-4 text-[#3b82f6]" />
+              <User className="size-4 text-primary" />
               Admin Profile
             </CardTitle>
           </CardHeader>
@@ -141,7 +141,7 @@ export default function SettingsPage() {
               <Input
                 value={adminName}
                 onChange={(e) => setAdminName(e.target.value)}
-                className="border-border bg-[#0a0e1a] text-sm text-foreground"
+                className="border-border bg-secondary text-sm text-foreground"
               />
             </div>
             <div>
@@ -149,7 +149,7 @@ export default function SettingsPage() {
               <Input
                 value={adminEmail}
                 onChange={(e) => setAdminEmail(e.target.value)}
-                className="border-border bg-[#0a0e1a] text-sm text-foreground"
+                className="border-border bg-secondary text-sm text-foreground"
               />
             </div>
             <div className="flex items-center justify-between">
@@ -170,10 +170,10 @@ export default function SettingsPage() {
         </Card>
 
         {/* Appearance */}
-        <Card className="border-border bg-[#111827]">
+        <Card className="border-border bg-card">
           <CardHeader>
             <CardTitle className="flex items-center gap-2 text-sm font-medium text-foreground">
-              <Palette className="size-4 text-[#3b82f6]" />
+              <Palette className="size-4 text-primary" />
               Appearance
             </CardTitle>
           </CardHeader>
@@ -181,7 +181,7 @@ export default function SettingsPage() {
             <div>
               <label className="mb-1.5 block text-xs text-muted-foreground">Theme</label>
               <Select value={theme} onValueChange={setTheme}>
-                <SelectTrigger className="border-border bg-[#0a0e1a] text-foreground">
+                <SelectTrigger className="border-border bg-secondary text-foreground">
                   <SelectValue />
                 </SelectTrigger>
                 <SelectContent>
@@ -191,7 +191,7 @@ export default function SettingsPage() {
                 </SelectContent>
               </Select>
             </div>
-            <div className="rounded-lg border border-border bg-[#0a0e1a] p-4">
+            <div className="rounded-lg border border-border bg-secondary p-4">
               <p className="text-xs text-muted-foreground leading-relaxed">
                 The dark theme is recommended for monitoring dashboards as it reduces eye strain during
                 extended monitoring sessions and improves readability of data visualizations.
@@ -203,7 +203,7 @@ export default function SettingsPage() {
 
       {/* Save Button */}
       <div className="flex items-center gap-3">
-        <Button onClick={handleSave} className="bg-[#3b82f6] text-[#ffffff] hover:bg-[#2563eb]">
+        <Button onClick={handleSave} className="bg-primary text-primary-foreground hover:bg-primary/90">
           {saved ? (
             <>
               <RefreshCw className="mr-1.5 size-4" />
@@ -214,7 +214,7 @@ export default function SettingsPage() {
           )}
         </Button>
         {saved && (
-          <span className="text-sm text-[#10b981]">Settings saved successfully</span>
+          <span className="text-sm text-success">Settings saved successfully</span>
         )}
       </div>
     </div>

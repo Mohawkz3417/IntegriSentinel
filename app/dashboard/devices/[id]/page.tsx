@@ -62,10 +62,10 @@ export default function DeviceDetailPage({ params }: { params: Promise<{ id: str
 
       {/* Device Overview */}
       <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
-        <Card className="border-border bg-[#111827]">
+        <Card className="border-border bg-card">
           <CardHeader className="pb-3">
             <CardTitle className="flex items-center gap-2 text-sm font-medium text-foreground">
-              <Monitor className="size-4 text-[#3b82f6]" /> System Info
+              <Monitor className="size-4 text-primary" /> System Info
             </CardTitle>
           </CardHeader>
           <CardContent className="flex flex-col gap-2 text-sm">
@@ -77,7 +77,7 @@ export default function DeviceDetailPage({ params }: { params: Promise<{ id: str
           </CardContent>
         </Card>
 
-        <Card className="border-border bg-[#111827]">
+        <Card className="border-border bg-card">
           <CardHeader className="pb-3">
             <CardTitle className="flex items-center gap-2 text-sm font-medium text-foreground">
               <Shield className="size-4 text-[#10b981]" /> Security Status
@@ -104,7 +104,7 @@ export default function DeviceDetailPage({ params }: { params: Promise<{ id: str
           </CardContent>
         </Card>
 
-        <Card className="border-border bg-[#111827]">
+        <Card className="border-border bg-card">
           <CardHeader className="pb-3">
             <CardTitle className="flex items-center gap-2 text-sm font-medium text-foreground">
               <AlertTriangle className="size-4 text-[#f59e0b]" /> Risk Breakdown
@@ -122,7 +122,7 @@ export default function DeviceDetailPage({ params }: { params: Promise<{ id: str
 
       {/* Tabbed Detail Sections */}
       <Tabs defaultValue="logins" className="w-full">
-        <TabsList className="bg-[#1e293b]">
+        <TabsList className="bg-muted">
           <TabsTrigger value="logins"><LogIn className="mr-1.5 size-3" />Logins</TabsTrigger>
           <TabsTrigger value="files"><FileText className="mr-1.5 size-3" />Files</TabsTrigger>
           <TabsTrigger value="usb"><Usb className="mr-1.5 size-3" />USB</TabsTrigger>
@@ -132,7 +132,7 @@ export default function DeviceDetailPage({ params }: { params: Promise<{ id: str
         </TabsList>
 
         <TabsContent value="logins">
-          <Card className="border-border bg-[#111827]">
+          <Card className="border-border bg-card">
             <CardContent className="pt-6">
               {deviceLogins.length > 0 ? (
                 <Table>
@@ -169,7 +169,7 @@ export default function DeviceDetailPage({ params }: { params: Promise<{ id: str
         </TabsContent>
 
         <TabsContent value="files">
-          <Card className="border-border bg-[#111827]">
+          <Card className="border-border bg-card">
             <CardContent className="pt-6">
               {deviceFiles.length > 0 ? (
                 <Table>
@@ -206,7 +206,7 @@ export default function DeviceDetailPage({ params }: { params: Promise<{ id: str
         </TabsContent>
 
         <TabsContent value="usb">
-          <Card className="border-border bg-[#111827]">
+          <Card className="border-border bg-card">
             <CardContent className="pt-6">
               {deviceUSB.length > 0 ? (
                 <Table>
@@ -239,7 +239,7 @@ export default function DeviceDetailPage({ params }: { params: Promise<{ id: str
         </TabsContent>
 
         <TabsContent value="ports">
-          <Card className="border-border bg-[#111827]">
+          <Card className="border-border bg-card">
             <CardContent className="pt-6">
               {devicePorts.length > 0 ? (
                 <Table>
@@ -272,7 +272,7 @@ export default function DeviceDetailPage({ params }: { params: Promise<{ id: str
         </TabsContent>
 
         <TabsContent value="drivers">
-          <Card className="border-border bg-[#111827]">
+          <Card className="border-border bg-card">
             <CardContent className="pt-6">
               {deviceDrivers.length > 0 ? (
                 <Table>
@@ -305,19 +305,19 @@ export default function DeviceDetailPage({ params }: { params: Promise<{ id: str
         </TabsContent>
 
         <TabsContent value="alerts">
-          <Card className="border-border bg-[#111827]">
+          <Card className="border-border bg-card">
             <CardContent className="pt-6">
               {deviceAlerts.length > 0 ? (
                 <ScrollArea className="h-[400px]">
                   <div className="flex flex-col gap-3 pr-4">
                     {deviceAlerts.map((alert) => (
-                      <div key={alert.id} className="rounded-lg border border-border bg-[#0a0e1a] p-4">
+                      <div key={alert.id} className="rounded-lg border border-border bg-secondary p-4">
                         <div className="flex items-center justify-between">
                           <span className="text-xs text-muted-foreground">{formatUTCDate}</span>
                           <Badge className={
                             alert.severity === "critical" ? "bg-[#ef4444]/15 text-[#ef4444] border-[#ef4444]/30 hover:bg-[#ef4444]/15" :
                             alert.severity === "high" ? "bg-[#f59e0b]/15 text-[#f59e0b] border-[#f59e0b]/30 hover:bg-[#f59e0b]/15" :
-                            alert.severity === "medium" ? "bg-[#3b82f6]/15 text-[#3b82f6] border-[#3b82f6]/30 hover:bg-[#3b82f6]/15" :
+                            alert.severity === "medium" ? "bg-[#3b82f6]/15 text-primary border-[#3b82f6]/30 hover:bg-[#3b82f6]/15" :
                             "bg-[#64748b]/15 text-[#94a3b8] border-[#64748b]/30 hover:bg-[#64748b]/15"
                           }>{alert.severity}</Badge>
                         </div>

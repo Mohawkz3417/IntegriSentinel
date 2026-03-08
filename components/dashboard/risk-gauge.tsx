@@ -14,7 +14,7 @@ export function RiskGauge({ score = 58 }: { score?: number }) {
   const rotation = (score / 100) * 180 - 90
 
   return (
-    <Card className="border-border bg-[#111827]">
+    <Card className="border-border bg-card">
       <CardHeader>
         <CardTitle className="text-sm font-medium text-foreground">Institution Risk Score</CardTitle>
       </CardHeader>
@@ -67,7 +67,7 @@ export function RiskGauge({ score = 58 }: { score?: number }) {
               transform={`rotate(${rotation}, 100, 100)`}
             />
             <circle cx="100" cy="100" r="6" fill={risk.color} />
-            <circle cx="100" cy="100" r="3" fill="#111827" />
+            <circle cx="100" cy="100" r="3" className="fill-card" />
           </svg>
         </div>
         <div className="mt-2 flex flex-col items-center gap-1">
