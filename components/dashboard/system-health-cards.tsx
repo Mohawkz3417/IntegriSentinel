@@ -1,16 +1,24 @@
 "use client"
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { Button } from "@/components/ui/button"
 import { useDevices, useOpenPorts, useDrivers } from "@/lib/hooks/use-data"
 import { useMemo } from "react"
-import { Shield, ShieldCheck, AlertTriangle, MonitorX, HardDrive, Loader2 } from "lucide-react"
+import { Shield, ShieldCheck, AlertTriangle, MonitorX, HardDrive, Loader2, RefreshCw } from "lucide-react"
 
 export function SystemHealthCards() {
-  const { data: devices = [], isLoading: devicesLoading } = useDevices()
-  const { data: ports = [], isLoading: portsLoading } = useOpenPorts()
-  const { data: drivers = [], isLoading: driversLoading } = useDrivers()
+  const { data: devices = [], isLoading: devicesLoading, error: devicesError, mutate: devicesMutate } = useDevices()
+  const { data: ports = [], isLoading: portsLoading, error: portsError, mutate: portsMutate } = useOpenPorts()
+  const { data: drivers = [], isLoading: driversLoading, error: driversError, mutate: driversMutate } = useDrivers()
 
   const isLoading = devicesLoading || portsLoading || driversLoading
+  const hasError = devicesError || portsError || driversError
+
+  const handleRetry = () => {
+    devicesMutate()
+    portsMutate()
+    driversMutate()
+  }
 
   // Calculate health data from live data
   const healthData = useMemo(() => {
@@ -50,6 +58,26 @@ export function SystemHealthCards() {
           </Card>
         ))}
       </div>
+    )
+  }
+
+  if (hasError) {
+    return (
+      <Card className="border-destructive/50 bg-destructive/5">
+        <CardContent className="flex items-center justify-between py-4">
+          <div className="flex items-center gap-3">
+            <AlertTriangle className="size-5 text-destructive" />
+            <div>
+              <p className="text-sm font-medium text-foreground">Failed to load system health</p>
+              <p className="text-xs text-muted-foreground">Check Flask backend connection</p>
+            </div>
+          </div>
+          <Button variant="outline" size="sm" onClick={handleRetry}>
+            <RefreshCw className="size-4 mr-2" />
+            Retry
+          </Button>
+        </CardContent>
+      </Card>
     )
   }
 

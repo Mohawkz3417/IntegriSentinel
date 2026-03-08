@@ -44,6 +44,27 @@ export const mockAlerts = [
   { id: "ALT-018", timestamp: "2026-03-02T07:30:00Z", device: "ECE-LAB-PC01", type: "Network Scan", severity: "medium", description: "Port scanning activity detected from this device", status: "investigating", scannedPorts: "1-10000", targetRange: "192.168.1.0/24", recommendation: "Investigate if authorized penetration testing" },
   { id: "ALT-019", timestamp: "2026-03-01T23:15:00Z", device: "ADMIN-PC01", type: "Remote Access", severity: "low", description: "TeamViewer session established from unknown ID", status: "resolved", remoteID: "1234567890", duration: "15 minutes", recommendation: "Verify with user if session was authorized" },
   { id: "ALT-020", timestamp: "2026-03-01T22:00:00Z", device: "CSE-LAB-PC02", type: "Registry Modification", severity: "medium", description: "Critical registry key modified: Run on startup", status: "open", registryKey: "HKLM\\Software\\Microsoft\\Windows\\CurrentVersion\\Run", value: "malware.exe", recommendation: "Remove registry entry and delete associated file" },
+  // Additional diverse alerts
+  { id: "ALT-021", timestamp: "2026-03-02T14:45:00Z", device: "LIB-PC02", type: "Brute Force Attempt", severity: "critical", description: "32 failed RDP login attempts in 5 minutes from IP 10.0.0.55", status: "open", sourceIP: "10.0.0.55", targetUser: "administrator", failedAttempts: 32, recommendation: "Disable RDP access and implement network-level authentication" },
+  { id: "ALT-022", timestamp: "2026-03-02T14:40:00Z", device: "MECH-LAB-PC02", type: "Malicious Hash Detected", severity: "critical", description: "Trojan signature detected in downloaded file: setup.exe", status: "open", filePath: "C:\\Users\\student\\Downloads\\setup.exe", hash: "aaf4c61ddcc5e8a2dabede0f3b482cd9aea9434d", hashType: "SHA1", recommendation: "Delete file immediately and scan entire system" },
+  { id: "ALT-023", timestamp: "2026-03-02T14:35:00Z", device: "ECE-LAB-PC02", type: "Firewall Disabled", severity: "high", description: "iptables service stopped unexpectedly on Linux endpoint", status: "open", user: "root", recommendation: "Restart firewall service and check for rootkit" },
+  { id: "ALT-024", timestamp: "2026-03-02T14:30:00Z", device: "HR-PC02", type: "Unauthorized Driver", severity: "high", description: "Kernel driver with revoked certificate installed", status: "investigating", driverName: "WinDivert64.sys", driverPath: "C:\\Windows\\System32\\drivers\\WinDivert64.sys", recommendation: "Uninstall driver and investigate traffic interception" },
+  { id: "ALT-025", timestamp: "2026-03-02T14:28:00Z", device: "CSE-LAB-PC04", type: "After Hours Login", severity: "medium", description: "System accessed at 03:42 AM by local account", status: "open", user: "lab_admin", loginTime: "03:42:00", recommendation: "Contact lab administrator to verify access" },
+  { id: "ALT-026", timestamp: "2026-03-02T14:22:00Z", device: "SERVER-ROOM-01", type: "Suspicious Port", severity: "high", description: "Port 6667 (IRC) detected open - potential C2 communication", status: "open", port: 6667, service: "IRC", recommendation: "Block port and scan for botnet malware" },
+  { id: "ALT-027", timestamp: "2026-03-02T14:18:00Z", device: "RECEPTION-PC", type: "Phishing Detection", severity: "high", description: "User clicked suspicious link from spoofed email", status: "investigating", sourceEmail: "support@micr0soft-security.com", destinationURL: "http://fake-login.malware.site/office365", recommendation: "Reset user credentials and scan for credential theft" },
+  { id: "ALT-028", timestamp: "2026-03-02T14:12:00Z", device: "CAFETERIA-POS", type: "Unauthorized Software", severity: "medium", description: "Unauthorized remote access tool detected: AnyDesk", status: "open", processName: "AnyDesk.exe", filePath: "C:\\Users\\Public\\AnyDesk.exe", recommendation: "Remove software and audit POS system security" },
+  { id: "ALT-029", timestamp: "2026-03-02T14:05:00Z", device: "CSE-LAB-PC05", type: "Privilege Escalation", severity: "critical", description: "Local privilege escalation exploit detected via PrintNightmare", status: "open", user: "student05", targetPrivilege: "SYSTEM", recommendation: "Patch system immediately and investigate compromised account" },
+  { id: "ALT-030", timestamp: "2026-03-02T13:58:00Z", device: "EXAM-SERVER", type: "SQL Injection Attempt", severity: "critical", description: "SQL injection pattern detected in web application input", status: "investigating", query: "' OR '1'='1'; DROP TABLE users;--", sourceIP: "192.168.1.108", recommendation: "Block source IP and review web application firewall rules" },
+  { id: "ALT-031", timestamp: "2026-03-02T13:52:00Z", device: "LIB-PC01", type: "DDoS Source", severity: "high", description: "Device sending abnormal traffic volume (50k packets/sec)", status: "open", targetIP: "external", packetsPerSec: 50000, recommendation: "Isolate device and scan for DDoS malware" },
+  { id: "ALT-032", timestamp: "2026-03-02T13:45:00Z", device: "FINANCE-PC01", type: "Data Exfiltration", severity: "critical", description: "Sensitive financial data uploaded to cloud storage", status: "open", destinationURL: "https://mega.nz/upload", dataSize: "850 MB", fileType: "xlsx, pdf", recommendation: "Revoke cloud access and investigate data breach" },
+  { id: "ALT-033", timestamp: "2026-03-02T13:38:00Z", device: "PRINCIPAL-PC", type: "Keylogger Detected", severity: "critical", description: "Known keylogger signature found in memory", status: "open", processName: "winlogon_helper.exe", recommendation: "Isolate system, reset all credentials used on device" },
+  { id: "ALT-034", timestamp: "2026-03-02T13:32:00Z", device: "ADMIN-PC01", type: "Certificate Anomaly", severity: "medium", description: "Self-signed certificate intercepting HTTPS traffic", status: "investigating", certificateCN: "DO_NOT_TRUST_FiddlerRoot", recommendation: "Remove untrusted certificate and check for MITM proxy" },
+  { id: "ALT-035", timestamp: "2026-03-02T13:25:00Z", device: "CSE-LAB-PC03", type: "Backdoor Detected", severity: "critical", description: "Reverse shell connection established to external server", status: "open", destinationIP: "185.220.101.1", destinationPort: 443, recommendation: "Isolate immediately and perform forensic analysis" },
+  { id: "ALT-036", timestamp: "2026-03-02T13:18:00Z", device: "ECE-LAB-PC01", type: "Wireless Attack", severity: "high", description: "Rogue access point detected with similar SSID", status: "open", rogueSSID: "College_WiFi_5G", legitimateSSID: "College_WiFi", recommendation: "Locate and disable rogue AP, alert users" },
+  { id: "ALT-037", timestamp: "2026-03-02T13:10:00Z", device: "HR-PC01", type: "Password Spray", severity: "high", description: "Multiple accounts targeted with common passwords", status: "investigating", affectedAccounts: 15, commonPassword: "Password123", recommendation: "Force password reset for affected accounts" },
+  { id: "ALT-038", timestamp: "2026-03-02T13:02:00Z", device: "MECH-LAB-PC01", type: "Suspicious Port", severity: "medium", description: "Port 5900 (VNC) exposed to network without authentication", status: "open", port: 5900, service: "VNC", recommendation: "Disable VNC or configure proper authentication" },
+  { id: "ALT-039", timestamp: "2026-03-02T12:55:00Z", device: "CSE-LAB-PC02", type: "Rootkit Indicator", severity: "critical", description: "Hidden process detected via memory analysis", status: "open", hiddenProcess: "svchost_hidden.exe", recommendation: "Boot from clean media and perform rootkit scan" },
+  { id: "ALT-040", timestamp: "2026-03-02T12:48:00Z", device: "SERVER-ROOM-01", type: "Configuration Change", severity: "medium", description: "SSH configuration modified to allow root login", status: "open", configFile: "/etc/ssh/sshd_config", changedSetting: "PermitRootLogin yes", recommendation: "Revert configuration and audit SSH access logs" },
 ]
 
 export const mockFileChanges = [
@@ -57,6 +78,17 @@ export const mockFileChanges = [
   { path: "/home/user/.ssh/authorized_keys", action: "Modified", user: "user", device: "LIB-PC01", timestamp: "2026-03-02T08:30:00Z", critical: true },
   { path: "C:\\Users\\hr\\Documents\\payroll.xlsx", action: "Deleted", user: "hr_admin", device: "HR-PC01", timestamp: "2026-03-01T16:45:00Z", critical: false },
   { path: "C:\\Windows\\System32\\drivers\\USBMon.sys", action: "Created", user: "SYSTEM", device: "CSE-LAB-PC03", timestamp: "2026-03-01T15:20:00Z", critical: true },
+  // Additional file changes
+  { path: "/etc/shadow", action: "Modified", user: "root", device: "SERVER-ROOM-01", timestamp: "2026-03-02T14:05:00Z", critical: true },
+  { path: "C:\\Windows\\System32\\cmd.exe", action: "Modified", user: "SYSTEM", device: "CSE-LAB-PC02", timestamp: "2026-03-02T13:48:00Z", critical: true },
+  { path: "C:\\ProgramData\\Microsoft\\Windows\\Start Menu\\Programs\\Startup\\update.bat", action: "Created", user: "student05", device: "CSE-LAB-PC05", timestamp: "2026-03-02T13:35:00Z", critical: true },
+  { path: "/etc/crontab", action: "Modified", user: "root", device: "ECE-LAB-PC01", timestamp: "2026-03-02T13:20:00Z", critical: true },
+  { path: "C:\\Users\\finance\\AppData\\Local\\Temp\\data_export.csv", action: "Created", user: "finance_user", device: "FINANCE-PC01", timestamp: "2026-03-02T12:55:00Z", critical: false },
+  { path: "/var/www/html/index.php", action: "Modified", user: "www-data", device: "SERVER-ROOM-01", timestamp: "2026-03-02T12:40:00Z", critical: true },
+  { path: "C:\\Windows\\System32\\wscript.exe.log", action: "Created", user: "SYSTEM", device: "HR-PC02", timestamp: "2026-03-02T12:25:00Z", critical: false },
+  { path: "C:\\Users\\Public\\Downloads\\toolkit.zip", action: "Created", user: "guest", device: "RECEPTION-PC", timestamp: "2026-03-02T12:10:00Z", critical: false },
+  { path: "/root/.bashrc", action: "Modified", user: "root", device: "LIB-PC01", timestamp: "2026-03-02T11:55:00Z", critical: true },
+  { path: "C:\\Windows\\System32\\sethc.exe", action: "Modified", user: "SYSTEM", device: "PRINCIPAL-PC", timestamp: "2026-03-02T11:40:00Z", critical: true },
 ]
 
 export const mockLoginActivity = [
@@ -72,6 +104,21 @@ export const mockLoginActivity = [
   { user: "student02", device: "CSE-LAB-PC02", timestamp: "2026-03-02T09:30:00Z", success: true, afterHours: false },
   { user: "finance_user", device: "FINANCE-PC01", timestamp: "2026-03-02T08:30:00Z", success: true, afterHours: false },
   { user: "hacker", device: "ECE-LAB-PC01", timestamp: "2026-03-02T03:00:00Z", success: false, afterHours: true },
+  // Additional login activity
+  { user: "bruteforce", device: "LIB-PC02", timestamp: "2026-03-02T14:45:00Z", success: false, afterHours: false },
+  { user: "bruteforce", device: "LIB-PC02", timestamp: "2026-03-02T14:45:02Z", success: false, afterHours: false },
+  { user: "bruteforce", device: "LIB-PC02", timestamp: "2026-03-02T14:45:04Z", success: false, afterHours: false },
+  { user: "student03", device: "CSE-LAB-PC04", timestamp: "2026-03-02T10:00:00Z", success: true, afterHours: false },
+  { user: "principal", device: "PRINCIPAL-PC", timestamp: "2026-03-02T08:15:00Z", success: true, afterHours: false },
+  { user: "guest_user", device: "PRINCIPAL-PC", timestamp: "2026-03-02T09:30:00Z", success: true, afterHours: false },
+  { user: "mech_lab_admin", device: "MECH-LAB-PC01", timestamp: "2026-03-02T07:45:00Z", success: true, afterHours: false },
+  { user: "anonymous", device: "CAFETERIA-POS", timestamp: "2026-03-02T01:30:00Z", success: true, afterHours: true },
+  { user: "temp_user", device: "HR-PC01", timestamp: "2026-03-02T07:00:00Z", success: true, afterHours: false },
+  { user: "exam_admin", device: "EXAM-SERVER", timestamp: "2026-03-02T07:30:00Z", success: true, afterHours: false },
+  { user: "db_readonly", device: "EXAM-SERVER", timestamp: "2026-03-02T09:10:00Z", success: true, afterHours: false },
+  { user: "reception", device: "RECEPTION-PC", timestamp: "2026-03-02T08:00:00Z", success: true, afterHours: false },
+  { user: "external_ip", device: "SERVER-ROOM-01", timestamp: "2026-03-02T04:15:00Z", success: false, afterHours: true },
+  { user: "external_ip", device: "SERVER-ROOM-01", timestamp: "2026-03-02T04:15:05Z", success: false, afterHours: true },
 ]
 
 export const mockUSBDevices = [
@@ -80,6 +127,17 @@ export const mockUSBDevices = [
   { device: "ADMIN-PC01", usbName: "Logitech Wireless Receiver", timestamp: "2026-03-02T08:05:00Z", known: true },
   { device: "HR-PC01", usbName: "SanDisk Ultra 64GB", timestamp: "2026-03-01T15:30:00Z", known: true },
   { device: "FINANCE-PC01", usbName: "Unknown HID Device", timestamp: "2026-03-02T11:00:00Z", known: false },
+  // Additional USB devices
+  { device: "LIB-PC01", usbName: "Rubber Ducky USB", timestamp: "2026-03-02T14:30:00Z", known: false },
+  { device: "ECE-LAB-PC01", usbName: "Arduino Uno R3", timestamp: "2026-03-02T11:15:00Z", known: true },
+  { device: "MECH-LAB-PC01", usbName: "USB 3.0 Hub", timestamp: "2026-03-02T09:30:00Z", known: true },
+  { device: "CSE-LAB-PC02", usbName: "Seagate External HDD 1TB", timestamp: "2026-03-02T12:45:00Z", known: true },
+  { device: "PRINCIPAL-PC", usbName: "Apple iPhone 14", timestamp: "2026-03-02T10:00:00Z", known: true },
+  { device: "CSE-LAB-PC04", usbName: "Unknown Mass Storage Device", timestamp: "2026-03-02T14:15:00Z", known: false },
+  { device: "HR-PC02", usbName: "Samsung T7 SSD", timestamp: "2026-03-02T13:20:00Z", known: true },
+  { device: "RECEPTION-PC", usbName: "Printer USB Cable", timestamp: "2026-03-02T08:30:00Z", known: true },
+  { device: "EXAM-SERVER", usbName: "YubiKey 5 NFC", timestamp: "2026-03-02T07:45:00Z", known: true },
+  { device: "SERVER-ROOM-01", usbName: "Unknown USB Device", timestamp: "2026-03-02T05:30:00Z", known: false },
 ]
 
 export const mockOpenPorts = [
@@ -93,6 +151,19 @@ export const mockOpenPorts = [
   { device: "SERVER-ROOM-01", port: 443, service: "HTTPS", suspicious: false },
   { device: "SERVER-ROOM-01", port: 3306, service: "MySQL", suspicious: false },
   { device: "MECH-LAB-PC01", port: 4444, service: "Unknown", suspicious: true },
+  // Additional ports
+  { device: "SERVER-ROOM-01", port: 22, service: "SSH", suspicious: false },
+  { device: "SERVER-ROOM-01", port: 6667, service: "IRC", suspicious: true },
+  { device: "FINANCE-PC01", port: 135, service: "RPC", suspicious: false },
+  { device: "FINANCE-PC01", port: 445, service: "SMB", suspicious: false },
+  { device: "LIB-PC01", port: 6666, service: "Unknown", suspicious: true },
+  { device: "HR-PC01", port: 3389, service: "RDP", suspicious: false },
+  { device: "EXAM-SERVER", port: 5432, service: "PostgreSQL", suspicious: false },
+  { device: "EXAM-SERVER", port: 8443, service: "HTTPS Alt", suspicious: false },
+  { device: "CSE-LAB-PC02", port: 9001, service: "Tor", suspicious: true },
+  { device: "PRINCIPAL-PC", port: 5900, service: "VNC", suspicious: true },
+  { device: "ADMIN-PC01", port: 21, service: "FTP", suspicious: false },
+  { device: "CAFETERIA-POS", port: 8888, service: "Unknown", suspicious: true },
 ]
 
 export const mockDrivers = [
@@ -102,83 +173,135 @@ export const mockDrivers = [
   { device: "CSE-LAB-PC02", name: "Realtek Audio HD", version: "6.0.9285.1", date: "2026-02-20", newlyAdded: false },
   { device: "ECE-LAB-PC01", name: "rtl8821ce", version: "5.15.0", date: "2026-03-02", newlyAdded: true },
   { device: "HR-PC01", name: "HP LaserJet Driver", version: "49.5.4586", date: "2026-01-05", newlyAdded: false },
+  // Additional drivers
+  { device: "CSE-LAB-PC03", name: "WinDivert64.sys", version: "2.2.0", date: "2026-03-02", newlyAdded: true },
+  { device: "FINANCE-PC01", name: "Intel UHD Graphics 730", version: "31.0.101.4502", date: "2026-02-28", newlyAdded: false },
+  { device: "SERVER-ROOM-01", name: "vmxnet3 Ethernet Adapter", version: "1.9.5.0", date: "2026-01-20", newlyAdded: false },
+  { device: "PRINCIPAL-PC", name: "Apple Magic Keyboard", version: "1.0.0", date: "2026-03-01", newlyAdded: true },
+  { device: "LIB-PC01", name: "Suspicious Kernel Module", version: "0.0.1", date: "2026-03-02", newlyAdded: true },
+  { device: "MECH-LAB-PC01", name: "AMD Radeon RX 580", version: "23.5.1", date: "2026-02-10", newlyAdded: false },
+  { device: "CSE-LAB-PC04", name: "Intel I219-V Ethernet", version: "12.19.1.37", date: "2026-01-15", newlyAdded: false },
+  { device: "EXAM-SERVER", name: "VMware SVGA 3D", version: "8.17.3.0", date: "2026-02-25", newlyAdded: false },
+  { device: "HR-PC02", name: "Synaptics Touchpad", version: "19.5.35.84", date: "2026-03-02", newlyAdded: true },
+  { device: "ECE-LAB-PC02", name: "Unknown Signed Driver", version: "1.0.0", date: "2026-03-02", newlyAdded: true },
 ]
 
 export const mockMaliciousHashes = [
-  { hash: "5d41402abc4b2a76b9719d911017c592", type: "MD5", addedDate: "2026-02-28", source: "VirusTotal" },
-  { hash: "aaf4c61ddcc5e8a2dabede0f3b482cd9aea9434d", type: "SHA1", addedDate: "2026-03-01", source: "Manual Upload" },
-  { hash: "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855", type: "SHA256", addedDate: "2026-03-02", source: "Threat Intel Feed" },
-  { hash: "d8e8fca2dc0f896fd7cb4cb0031ba249", type: "MD5", addedDate: "2026-02-25", source: "VirusTotal" },
-  { hash: "7c222fb2927d828af22f592134e8932480637c0d", type: "SHA1", addedDate: "2026-02-20", source: "Internal Analysis" },
+  { hash: "5d41402abc4b2a76b9719d911017c592", type: "MD5", addedDate: "2026-02-28", source: "VirusTotal", threatName: "Trojan.GenericKD.46584752" },
+  { hash: "aaf4c61ddcc5e8a2dabede0f3b482cd9aea9434d", type: "SHA1", addedDate: "2026-03-01", source: "Manual Upload", threatName: "Backdoor.Win32.Agent" },
+  { hash: "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855", type: "SHA256", addedDate: "2026-03-02", source: "Threat Intel Feed", threatName: "Ransom.WannaCry" },
+  { hash: "d8e8fca2dc0f896fd7cb4cb0031ba249", type: "MD5", addedDate: "2026-02-25", source: "VirusTotal", threatName: "PUP.Optional.Bundler" },
+  { hash: "7c222fb2927d828af22f592134e8932480637c0d", type: "SHA1", addedDate: "2026-02-20", source: "Internal Analysis", threatName: "Keylogger.Win32.Agent" },
+  { hash: "098f6bcd4621d373cade4e832627b4f6", type: "MD5", addedDate: "2026-03-02", source: "VirusTotal", threatName: "Miner.CoinMiner" },
+  { hash: "40bd001563085fc35165329ea1ff5c5ecbdbbeef", type: "SHA1", addedDate: "2026-03-02", source: "Threat Intel Feed", threatName: "Rootkit.Necurs" },
+  { hash: "ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad", type: "SHA256", addedDate: "2026-03-01", source: "Manual Upload", threatName: "Exploit.CVE-2021-34527" },
+  { hash: "098f6bcd4621d373cade4e832627b4f6", type: "MD5", addedDate: "2026-02-28", source: "YARA Rule Match", threatName: "Trojan.Emotet" },
+  { hash: "b1946ac92492d2347c6235b4d2611184", type: "MD5", addedDate: "2026-02-26", source: "Sandbox Analysis", threatName: "Dropper.Generic" },
 ]
 
 export const mockDepartments = [
-  { name: "CSE Lab", devices: 3, compliant: 1, nonCompliant: 2 },
-  { name: "Admin Office", devices: 2, compliant: 2, nonCompliant: 0 },
-  { name: "Library", devices: 1, compliant: 0, nonCompliant: 1 },
+  { name: "CSE Lab", devices: 5, compliant: 2, nonCompliant: 3 },
+  { name: "Admin Office", devices: 3, compliant: 3, nonCompliant: 0 },
+  { name: "Library", devices: 2, compliant: 0, nonCompliant: 2 },
   { name: "Exam Cell", devices: 1, compliant: 1, nonCompliant: 0 },
-  { name: "HR Office", devices: 1, compliant: 1, nonCompliant: 0 },
-  { name: "Finance", devices: 1, compliant: 1, nonCompliant: 0 },
-  { name: "ECE Lab", devices: 1, compliant: 0, nonCompliant: 1 },
-  { name: "Mech Lab", devices: 1, compliant: 0, nonCompliant: 1 },
+  { name: "HR Office", devices: 2, compliant: 1, nonCompliant: 1 },
+  { name: "Finance", devices: 1, compliant: 0, nonCompliant: 1 },
+  { name: "ECE Lab", devices: 2, compliant: 1, nonCompliant: 1 },
+  { name: "Mech Lab", devices: 2, compliant: 1, nonCompliant: 1 },
   { name: "Server Room", devices: 1, compliant: 1, nonCompliant: 0 },
+  { name: "Cafeteria", devices: 1, compliant: 0, nonCompliant: 1 },
 ]
 
 export const mockLoginChartData = [
+  { date: "Feb 17", success: 42, failed: 2 },
+  { date: "Feb 18", success: 48, failed: 3 },
+  { date: "Feb 19", success: 35, failed: 1 },
+  { date: "Feb 20", success: 51, failed: 4 },
+  { date: "Feb 21", success: 47, failed: 2 },
+  { date: "Feb 22", success: 15, failed: 0 },
+  { date: "Feb 23", success: 12, failed: 1 },
   { date: "Feb 24", success: 45, failed: 3 },
   { date: "Feb 25", success: 52, failed: 5 },
   { date: "Feb 26", success: 48, failed: 2 },
   { date: "Feb 27", success: 55, failed: 8 },
   { date: "Feb 28", success: 50, failed: 4 },
   { date: "Mar 01", success: 42, failed: 12 },
-  { date: "Mar 02", success: 38, failed: 18 },
+  { date: "Mar 02", success: 38, failed: 28 },
 ]
 
 export const mockFileChangeChartData = [
+  { date: "Feb 17", changes: 8 },
+  { date: "Feb 18", changes: 11 },
+  { date: "Feb 19", changes: 6 },
+  { date: "Feb 20", changes: 14 },
+  { date: "Feb 21", changes: 9 },
+  { date: "Feb 22", changes: 3 },
+  { date: "Feb 23", changes: 5 },
   { date: "Feb 24", changes: 12 },
   { date: "Feb 25", changes: 8 },
   { date: "Feb 26", changes: 15 },
   { date: "Feb 27", changes: 22 },
   { date: "Feb 28", changes: 10 },
   { date: "Mar 01", changes: 18 },
-  { date: "Mar 02", changes: 25 },
+  { date: "Mar 02", changes: 30 },
 ]
 
 export const mockUSBChartData = [
+  { date: "Feb 17", insertions: 3 },
+  { date: "Feb 18", insertions: 6 },
+  { date: "Feb 19", insertions: 4 },
+  { date: "Feb 20", insertions: 8 },
+  { date: "Feb 21", insertions: 5 },
+  { date: "Feb 22", insertions: 2 },
+  { date: "Feb 23", insertions: 1 },
   { date: "Feb 24", insertions: 5 },
   { date: "Feb 25", insertions: 3 },
   { date: "Feb 26", insertions: 7 },
   { date: "Feb 27", insertions: 4 },
   { date: "Feb 28", insertions: 6 },
   { date: "Mar 01", insertions: 8 },
-  { date: "Mar 02", insertions: 5 },
+  { date: "Mar 02", insertions: 15 },
 ]
 
 export const mockAlertTrendData = [
+  { date: "Feb 17", critical: 0, high: 1, medium: 2, low: 3 },
+  { date: "Feb 18", critical: 1, high: 2, medium: 1, low: 4 },
+  { date: "Feb 19", critical: 0, high: 1, medium: 3, low: 2 },
+  { date: "Feb 20", critical: 1, high: 2, medium: 2, low: 5 },
+  { date: "Feb 21", critical: 0, high: 3, medium: 1, low: 3 },
+  { date: "Feb 22", critical: 0, high: 0, medium: 1, low: 1 },
+  { date: "Feb 23", critical: 0, high: 1, medium: 0, low: 2 },
   { date: "Feb 24", critical: 1, high: 2, medium: 3, low: 4 },
   { date: "Feb 25", critical: 0, high: 3, medium: 2, low: 5 },
   { date: "Feb 26", critical: 2, high: 1, medium: 4, low: 3 },
   { date: "Feb 27", critical: 1, high: 4, medium: 2, low: 2 },
   { date: "Feb 28", critical: 3, high: 2, medium: 5, low: 1 },
   { date: "Mar 01", critical: 2, high: 3, medium: 3, low: 4 },
-  { date: "Mar 02", critical: 3, high: 4, medium: 2, low: 3 },
+  { date: "Mar 02", critical: 8, high: 7, medium: 5, low: 4 },
 ]
 
 export const mockDeviceHealthData = [
-  { name: "Healthy", value: 5, fill: "#10b981" },
-  { name: "At Risk", value: 4, fill: "#f59e0b" },
-  { name: "Critical", value: 2, fill: "#ef4444" },
+  { name: "Healthy", value: 10, fill: "#10b981" },
+  { name: "At Risk", value: 5, fill: "#f59e0b" },
+  { name: "Critical", value: 3, fill: "#ef4444" },
   { name: "Offline", value: 2, fill: "#64748b" },
 ]
 
 export const mockRiskTrendData = [
+  { date: "Feb 17", score: 28 },
+  { date: "Feb 18", score: 32 },
+  { date: "Feb 19", score: 30 },
+  { date: "Feb 20", score: 35 },
+  { date: "Feb 21", score: 33 },
+  { date: "Feb 22", score: 25 },
+  { date: "Feb 23", score: 27 },
   { date: "Feb 24", score: 35 },
   { date: "Feb 25", score: 38 },
   { date: "Feb 26", score: 42 },
   { date: "Feb 27", score: 45 },
   { date: "Feb 28", score: 50 },
   { date: "Mar 01", score: 55 },
-  { date: "Mar 02", score: 58 },
+  { date: "Mar 02", score: 68 },
 ]
 
 export const mockDatabaseLogs = [
@@ -187,4 +310,14 @@ export const mockDatabaseLogs = [
   { id: 3, device: "LIB-PC01", timestamp: "2026-03-02T14:15:00Z", data: { host_id: "HOST-003", event: "malicious_hash_match", file: "/tmp/payload.bin", hash: "5d41402abc4b2a76b9719d911017c592" } },
   { id: 4, device: "FINANCE-PC01", timestamp: "2026-03-02T11:15:00Z", data: { host_id: "HOST-007", event: "file_modified", path: "C:\\Windows\\System32\\config\\SAM", user: "Administrator" } },
   { id: 5, device: "HR-PC01", timestamp: "2026-03-02T02:15:00Z", data: { host_id: "HOST-006", event: "after_hours_login", user: "unknown", login_time: "02:15:00" } },
+  { id: 6, device: "LIB-PC02", timestamp: "2026-03-02T14:45:00Z", data: { host_id: "HOST-016", event: "brute_force_detected", failed_attempts: 32, source_ip: "10.0.0.55", target_user: "administrator" } },
+  { id: 7, device: "SERVER-ROOM-01", timestamp: "2026-03-02T14:40:00Z", data: { host_id: "HOST-012", event: "suspicious_port_open", port: 6667, service: "IRC", action: "alert" } },
+  { id: 8, device: "EXAM-SERVER", timestamp: "2026-03-02T13:58:00Z", data: { host_id: "HOST-005", event: "sql_injection_attempt", query: "' OR '1'='1'", source_ip: "192.168.1.108" } },
+  { id: 9, device: "PRINCIPAL-PC", timestamp: "2026-03-02T11:40:00Z", data: { host_id: "HOST-009", event: "critical_file_modified", path: "C:\\Windows\\System32\\sethc.exe", user: "SYSTEM" } },
+  { id: 10, device: "CSE-LAB-PC05", timestamp: "2026-03-02T14:05:00Z", data: { host_id: "HOST-014", event: "privilege_escalation", user: "student05", exploit: "PrintNightmare" } },
+  { id: 11, device: "RECEPTION-PC", timestamp: "2026-03-02T14:18:00Z", data: { host_id: "HOST-019", event: "phishing_link_clicked", url: "http://fake-login.malware.site/office365", email_from: "support@micr0soft-security.com" } },
+  { id: 12, device: "FINANCE-PC01", timestamp: "2026-03-02T13:45:00Z", data: { host_id: "HOST-007", event: "data_exfiltration", destination: "https://mega.nz/upload", data_size: "850 MB" } },
+  { id: 13, device: "CSE-LAB-PC03", timestamp: "2026-03-02T13:25:00Z", data: { host_id: "HOST-008", event: "reverse_shell_detected", destination_ip: "185.220.101.1", destination_port: 443 } },
+  { id: 14, device: "PRINCIPAL-PC", timestamp: "2026-03-02T13:32:00Z", data: { host_id: "HOST-009", event: "keylogger_detected", process: "winlogon_helper.exe", signature: "known_malware" } },
+  { id: 15, device: "CSE-LAB-PC01", timestamp: "2026-03-02T08:50:00Z", data: { host_id: "HOST-001", event: "ransomware_indicator", affected_files: 47, extension: ".encrypted" } },
 ]

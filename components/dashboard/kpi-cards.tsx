@@ -1,6 +1,7 @@
 "use client"
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { Button } from "@/components/ui/button"
 import { useDevices, useAlerts, useLoginActivity, useUSBDevices, useFileChanges } from "@/lib/hooks/use-data"
 import { useMemo } from "react"
 import {
@@ -15,17 +16,27 @@ import {
   TrendingUp,
   TrendingDown,
   Loader2,
+  RefreshCw,
 } from "lucide-react"
 
 export function KPICards() {
   // Fetch all data using SWR hooks (auto-updates from Flask backend)
-  const { data: devices = [], isLoading: devicesLoading } = useDevices()
-  const { data: alerts = [], isLoading: alertsLoading } = useAlerts()
-  const { data: loginActivity = [], isLoading: loginsLoading } = useLoginActivity()
-  const { data: usbDevices = [], isLoading: usbLoading } = useUSBDevices()
-  const { data: fileChanges = [], isLoading: filesLoading } = useFileChanges()
+  const { data: devices = [], isLoading: devicesLoading, error: devicesError, mutate: devicesMutate } = useDevices()
+  const { data: alerts = [], isLoading: alertsLoading, error: alertsError, mutate: alertsMutate } = useAlerts()
+  const { data: loginActivity = [], isLoading: loginsLoading, error: loginsError, mutate: loginsMutate } = useLoginActivity()
+  const { data: usbDevices = [], isLoading: usbLoading, error: usbError, mutate: usbMutate } = useUSBDevices()
+  const { data: fileChanges = [], isLoading: filesLoading, error: filesError, mutate: filesMutate } = useFileChanges()
 
   const isLoading = devicesLoading || alertsLoading || loginsLoading || usbLoading || filesLoading
+  const hasError = devicesError || alertsError || loginsError || usbError || filesError
+
+  const handleRetry = () => {
+    devicesMutate()
+    alertsMutate()
+    loginsMutate()
+    usbMutate()
+    filesMutate()
+  }
 
   // Calculate KPI values from live data
   const kpiData = useMemo(() => {
@@ -65,6 +76,24 @@ export function KPICards() {
           </Card>
         ))}
       </div>
+    )
+  }
+
+  if (hasError) {
+    return (
+      <Card className="border-destructive/50 bg-destructive/5">
+        <CardContent className="flex flex-col items-center justify-center py-8">
+          <AlertTriangle className="size-8 text-destructive mb-3" />
+          <h3 className="text-sm font-semibold text-foreground mb-1">Failed to Load KPI Data</h3>
+          <p className="text-xs text-muted-foreground text-center mb-4">
+            Unable to fetch metrics from the server. Check your Flask backend connection.
+          </p>
+          <Button variant="outline" size="sm" onClick={handleRetry}>
+            <RefreshCw className="size-4 mr-2" />
+            Retry
+          </Button>
+        </CardContent>
+      </Card>
     )
   }
 
