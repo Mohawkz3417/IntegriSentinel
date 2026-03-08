@@ -29,7 +29,7 @@ export default function DashboardPage() {
 
       {/* Risk Gauge + Alert Feed */}
       <div className="grid grid-cols-1 gap-4 lg:grid-cols-3">
-        <RiskGauge score={58} />
+        <RiskGauge />
         <div className="lg:col-span-2">
           <AlertFeed />
         </div>

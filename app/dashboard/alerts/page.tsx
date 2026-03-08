@@ -1,14 +1,15 @@
 "use client"
 
 import { useState } from "react"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { mockAlerts } from "@/lib/mock-data"
+import { useAlerts } from "@/lib/hooks/use-data"
 import { useRole } from "@/lib/role-context"
 import { formatUTCDate } from "@/lib/utils"
+import { Loader2, AlertTriangle } from "lucide-react"
 
 const severityColors: Record<string, string> = {
   critical: "bg-[#ef4444]/15 text-[#ef4444] border-[#ef4444]/30",
@@ -25,14 +26,33 @@ const statusColors: Record<string, string> = {
 
 export default function AlertsPage() {
   const { isAdmin } = useRole()
+  const { data: alerts = [], isLoading, error } = useAlerts()
   const [severityFilter, setSeverityFilter] = useState("all")
   const [statusFilter, setStatusFilter] = useState("all")
 
-  const filtered = mockAlerts.filter((a) => {
+  const filtered = alerts.filter((a) => {
     if (severityFilter !== "all" && a.severity !== severityFilter) return false
     if (statusFilter !== "all" && a.status !== statusFilter) return false
     return true
   })
+
+  if (isLoading) {
+    return (
+      <div className="flex flex-col items-center justify-center py-16">
+        <Loader2 className="size-8 animate-spin text-primary mb-4" />
+        <p className="text-sm text-muted-foreground">Loading alerts...</p>
+      </div>
+    )
+  }
+
+  if (error) {
+    return (
+      <div className="flex flex-col items-center justify-center rounded-lg border border-dashed border-destructive/50 bg-destructive/5 py-16">
+        <AlertTriangle className="size-8 text-destructive mb-4" />
+        <p className="text-sm text-destructive">Failed to load alerts. Please try again.</p>
+      </div>
+    )
+  }
 
   return (
     <div className="flex flex-col gap-6">
