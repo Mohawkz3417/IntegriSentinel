@@ -15,19 +15,27 @@ export function SystemHealthCards() {
   return (
     <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-5">
       {healthData.map((item) => (
-        <Card key={item.label} className="border-border bg-[#111827]">
-          <CardHeader className="pb-2">
-            <CardTitle className="text-xs font-medium text-muted-foreground">{item.label}</CardTitle>
+        <Card
+          key={item.label}
+          className="group border-border dark:border-cyan-500/20 bg-card dark:bg-gradient-to-br dark:from-slate-900/50 dark:to-slate-800/30 hover:border-primary dark:hover:border-cyan-500/40 hover:shadow-md dark:hover:shadow-lg transition-all duration-200 overflow-hidden relative"
+        >
+          <CardHeader className="pb-2 relative z-10">
+            <CardTitle className="text-xs font-medium text-muted-foreground group-hover:text-primary dark:group-hover:text-cyan-300 transition-colors duration-200">
+              {item.label}
+            </CardTitle>
           </CardHeader>
-          <CardContent>
+          <CardContent className="relative z-10">
             <div className="flex items-center gap-3">
               <div
-                className="flex size-10 items-center justify-center rounded-lg"
-                style={{ backgroundColor: `${item.color}15` }}
+                className="flex size-10 items-center justify-center rounded-lg border transition-all duration-200"
+                style={{
+                  backgroundColor: `${item.color}15`,
+                  borderColor: `${item.color}30`,
+                }}
               >
                 <item.icon className="size-5" style={{ color: item.color }} />
               </div>
-              <span className="text-xl font-bold text-foreground">{item.value}</span>
+              <span className="text-xl font-bold text-foreground group-hover:text-primary dark:group-hover:text-cyan-300 transition-colors duration-200">{item.value}</span>
             </div>
           </CardContent>
         </Card>

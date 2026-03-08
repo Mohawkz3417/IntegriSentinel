@@ -29,23 +29,29 @@ export function KPICards() {
   return (
     <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
       {kpiData.map((kpi) => (
-        <Card key={kpi.label} className="border-border bg-[#111827]">
-          <CardHeader className="flex flex-row items-center justify-between pb-2">
-            <CardTitle className="text-xs font-medium text-muted-foreground">
+        <Card
+          key={kpi.label}
+          className="group border-border dark:border-cyan-500/20 bg-card dark:bg-gradient-to-br dark:from-slate-900/50 dark:to-slate-800/30 hover:border-primary dark:hover:border-cyan-500/40 hover:shadow-md dark:hover:shadow-lg dark:hover:shadow-cyan-500/20 transition-all duration-200 cursor-pointer overflow-hidden relative"
+        >
+          <CardHeader className="flex flex-row items-center justify-between pb-2 relative z-10">
+            <CardTitle className="text-xs font-medium text-muted-foreground group-hover:text-primary dark:group-hover:text-cyan-300 transition-colors duration-200">
               {kpi.label}
             </CardTitle>
             <div
-              className="flex size-8 items-center justify-center rounded-lg"
-              style={{ backgroundColor: `${kpi.color}15` }}
+              className="flex size-8 items-center justify-center rounded-lg border transition-all duration-200"
+              style={{
+                backgroundColor: `${kpi.color}15`,
+                borderColor: `${kpi.color}30`,
+              }}
             >
               <kpi.icon className="size-4" style={{ color: kpi.color }} />
             </div>
           </CardHeader>
-          <CardContent>
+          <CardContent className="relative z-10">
             <div className="flex items-end gap-2">
-              <span className="text-2xl font-bold text-foreground">{kpi.value}</span>
+              <span className="text-2xl font-bold text-foreground group-hover:text-primary dark:group-hover:text-cyan-300 transition-colors duration-200">{kpi.value}</span>
               <span
-                className="flex items-center gap-0.5 text-xs font-medium"
+                className="flex items-center gap-0.5 text-xs font-medium transition-colors duration-200"
                 style={{ color: kpi.label.includes("Offline") || kpi.label.includes("Critical") || kpi.label.includes("Failed") || kpi.label.includes("High Risk")
                   ? kpi.up ? "#ef4444" : "#10b981"
                   : kpi.up ? "#10b981" : "#ef4444"
